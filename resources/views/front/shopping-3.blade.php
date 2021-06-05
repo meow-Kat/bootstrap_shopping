@@ -1,7 +1,9 @@
+@extends('layout.template')
+
 @section('title','Shopping - Step 3')
 
 @section('css')
-    <link rel="stylesheet" href="./css/shop.css">
+    <link rel="stylesheet" href="/css/shop.css">
 @endsection
 
 @section('main')
@@ -107,8 +109,8 @@
                     <!-- 上/下一步 -->
                     <div class="row">
                         <div class="col d-flex justify-content-between align-items-center">
-                            <a href="./shopping-2.html"><button type="button" class="btn btn-outline-primary btn-lg my-button">上一步</button></a>
-                            <a href="./shopping-4.html"><button type="button" class="btn btn-primary btn-lg my-button">前往付款</button></a>
+                            <a href="{{ asset('/shopping-2') }}"><button type="button" class="btn btn-outline-primary btn-lg my-button">上一步</button></a>
+                            <a href="{{ asset('/shopping-4') }}"><button type="button" class="btn btn-primary btn-lg my-button">前往付款</button></a>
 
                         </div>
                     </div>

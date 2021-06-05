@@ -1,7 +1,9 @@
+@extends('layout.template')
+
 @section('title','Shopping - Step 1')
 
 @section('css')
-    <link rel="stylesheet" href="./css/shop.css">
+    <link rel="stylesheet" href="/css/shop.css">
 @endsection
 
 @section('main')
@@ -158,11 +160,11 @@
                     <div class="col d-flex justify-content-between align-items-center">
                         <span class="d-flex align-items-center">
                             <i class="fas fa-caret-left"></i>
-                            <a href="./index.html">
+                            <a href="{{ asset('/') }}">
                                 <p class="card-text my-back px-3">返回購物</p>
                             </a>
                         </span>
-                        <a href="./shopping-2.html"><button type="button"
+                        <a href="{{ asset('/shopping-2') }}"><button type="button"
                                 class="btn btn-primary btn-lg my-button">下一步</button></a>
                     </div>
                 </div>

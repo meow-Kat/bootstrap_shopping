@@ -6,7 +6,7 @@
 
 
 @section('css')
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="/css/index.css">
     <!-- banner -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 @endsection
@@ -605,8 +605,3 @@
     </script>
 @endsection
 
-
-
-</body>
-
-</html>

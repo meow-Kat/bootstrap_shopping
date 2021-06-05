@@ -16,3 +16,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('front.index');
 });
+
+Route::get('/shopping-1', function () {
+    return view('front.shopping-1');
+});
+Route::get('/shopping-2', function () {
+    return view('front.shopping-2');
+});
+Route::get('/shopping-3', function () {
+    return view('front.shopping-3');
+});
+Route::get('/shopping-4', function () {
+    return view('front.shopping-4');
+});
+
+Route::get('/login', function () {
+    return view('front.login');
+});

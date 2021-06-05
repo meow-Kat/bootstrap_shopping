@@ -1,7 +1,9 @@
+@extends('layout.template')
+
 @section('title','Shopping - Step 4')
 
 @section('css')
-    <link rel="stylesheet" href="./css/shop.css">
+    <link rel="stylesheet" href="/css/shop.css">
 @endsection
 
 @section('main')
@@ -177,7 +179,7 @@
                         <div class="col d-flex justify-content-between align-items-center">
                             <span class="d-flex align-items-center">
                             </span>
-                            <a href="./index.html"><button type="button" class="btn btn-primary btn-lg my-button">返回首頁</button></a>
+                            <a href="{{ asset('/') }}"><button type="button" class="btn btn-primary btn-lg my-button">返回首頁</button></a>
                         </div>
                     </div>
                 </div>

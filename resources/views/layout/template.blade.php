@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <link rel="stylesheet" href="./css/head+foot.css">
-    
+
     @yield('css')
 </head>
 
@@ -35,7 +35,7 @@
                 <a class="nav-item nav-link px-3 ml-3 my-link-ctrl text-center" href="#">Contact</a>
 
                 <div class="btn-group ml-3 ">
-                    <a class="navbar-brand m-0" href="./shopping-1.html">
+                    <a class="navbar-brand m-0" href="{{ asset('/shopping-1') }}">
                         <i class="fas fa-shopping-cart my-icon icon-car p-2 "></i>
                     </a>
                     <button type="button" class="btn" data-toggle="dropdown" data-display="static" aria-haspopup="true"
@@ -43,7 +43,7 @@
                         <i class="fas fa-user-circle my-icon"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-lg-right position-absolute login-option">
-                        <a href="./login.html"><button class="dropdown-item" type="button">login</button></a>
+                        <a href="{{ asset('/login') }}"><button class="dropdown-item" type="button">login</button></a>
                     </div>
                 </div>
             </div>
