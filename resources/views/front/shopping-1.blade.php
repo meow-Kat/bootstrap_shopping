@@ -1,3 +1,7 @@
+@section('css')
+    <link rel="stylesheet" href="./css/shop.css">
+@endsection
+
 @section('main')
 <!-- Main -->
 <main class="my-main">
