@@ -28,7 +28,7 @@
                                 <i class="fab fa-facebook-f mx-4 font-icon"></i>
                                 <i class="fab fa-instagram font-icon"></i>
                             </div>
-                        
+
                     <div class="col-12 col-lg-6">
                         <div class="back-spec d-lg-block"></div>
                         <div class="right">

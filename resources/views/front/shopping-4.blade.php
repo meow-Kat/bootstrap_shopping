@@ -1,3 +1,5 @@
+@section('title','Shopping - Step 4')
+
 @section('css')
     <link rel="stylesheet" href="./css/shop.css">
 @endsection

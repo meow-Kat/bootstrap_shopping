@@ -1,9 +1,14 @@
 @extends('layout.template')
 
+
+@section('title','Homepage')
+
+
+
 @section('css')
-<link rel="stylesheet" href="./css/index.css">
-<!-- banner -->
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="./css/index.css">
+    <!-- banner -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 @endsection
 
 @section('main')
