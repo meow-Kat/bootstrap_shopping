@@ -22,7 +22,7 @@
             <label for="product_classify">分類 Classify</label>
             <select class="form-control form-control-lg" id="product_classify" name="product_classify">
                 {{-- @foreach ($classify as $item)
-                <option>{{ $item->classify_item }}</option>
+                <option value="{{ $item->classify_item }}">{{ $item->classify_item }}</option>
                 @endforeach --}}
                 <option value="1">普通</option>
                 <option value="2">禮盒</option>
