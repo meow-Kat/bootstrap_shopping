@@ -25,10 +25,10 @@
                 <option value="{{ $item->classify_item }}">{{ $item->classify_item }}</option>
                 @endforeach --}}
                 {{-- 還沒做出分類的資料欄位 --}}
-                <option value="1">普通</option>
-                <option value="2">禮盒</option>
-                <option value="3">限定</option>
-                <option value="4">熱銷</option>
+                <option value="普通">普通</option>
+                <option value="禮盒">禮盒</option>
+                <option value="限定">限定</option>
+                <option value="熱銷">熱銷</option>
             </select>
             <label class="py-2" for="product_name">產品名稱</label>
             <input type="product_name" class="form-control" id="product_name" name="product_name" required value="{{ $record->product_name }}">

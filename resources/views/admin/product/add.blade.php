@@ -21,10 +21,10 @@
         <div class="col-6">
             <label for="product_classify">分類 Classify</label>
             <select class="form-control form-control-lg" id="product_classify" name="product_classify">
-                <option>普通</option>
-                <option>禮盒</option>
-                <option>限定</option>
-                <option>熱銷</option>
+                <option value="普通">普通</option>
+                <option value="禮盒">禮盒</option>
+                <option value="限定">限定</option>
+                <option value="熱銷">熱銷</option>
             </select>
             <label class="py-2" for="product_name">產品名稱</label>
             <input type="product_name" class="form-control" id="product_name" name="product_name" required>
@@ -32,7 +32,7 @@
                 <label for="product_context">產品內容</label>
                 <textarea class="form-control" id="product_context" rows="3" name="product_context"></textarea>
             </div>
-            <a href="{{ asset('/admin/product/push') }}"><button type="submit" class="btn btn-primary">新增</button></a>
+            <button type="submit" class="btn btn-primary">新增</button>
         </div>
     </div>
 </form>
