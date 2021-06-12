@@ -24,6 +24,7 @@
                 {{-- @foreach ($classify as $item)
                 <option value="{{ $item->classify_item }}">{{ $item->classify_item }}</option>
                 @endforeach --}}
+                {{-- 還沒做出分類的資料欄位 --}}
                 <option value="1">普通</option>
                 <option value="2">禮盒</option>
                 <option value="3">限定</option>
