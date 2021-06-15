@@ -24,6 +24,7 @@ Route::get('/login', 'FrontController@shoppingCart4');
 
 
 
+
 Route::get('/admin', 'ProductController@admin');
 
 Route::get('/admin/product', 'ProductController@product' );

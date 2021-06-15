@@ -16,10 +16,11 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
 
+            $table->char('product_classify')->comment('產品分類')->nullable();
             $table->longText('product_photo')->comment('產品圖片')->nullable();
             $table->char('product_name')->comment('產品名稱')->nullable();
-            $table->char('product_classify')->comment('產品分類')->nullable();
             $table->text('product_context')->comment('產品內容')->nullable();
+            $table->integer('product_price')->comment('價格')->nullable();
 
             $table->timestamps();
         });

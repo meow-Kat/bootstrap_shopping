@@ -20,6 +20,7 @@
             <th>照片</th>
             <th>名稱</th>
             <th>內容</th>
+            <th>價格</th>
             <th>操作</th>
         </tr>
     </thead>
@@ -30,6 +31,7 @@
             <td><img src="{{ $item->product_photo }}" alt="" style="width: 300px; height: 200px;"></td>
             <td>{{ $item->product_name }}</td>
             <td>{{ $item->product_context }}</td>
+            <td>{{ $item->product_price }}</td>
             <td>
                 <a href="{{ asset('/admin/product/edit') }}/{{ $item->id }}" type="button" class="btn btn-primary btn-sm d-flex justify-content-center">Edit</a>
                 <form action="{{ asset('/admin/product/delete') }}/{{  $item->id }} " method="POST">
@@ -48,6 +50,7 @@
             <th>照片</th>
             <th>名稱</th>
             <th>內容</th>
+            <th>價格</th>
             <th>操作</th>
         </tr>
     </tfoot>

@@ -32,6 +32,8 @@
             </select>
             <label class="py-2" for="product_name">產品名稱</label>
             <input type="product_name" class="form-control" id="product_name" name="product_name" required value="{{ $record->product_name }}">
+            <label class="py-2" for="product_price">產品價格</label>
+            <input type="product_price" class="form-control" id="product_price" name="product_price" required value="{{ $record->product_price }}">
             <div class="form-group py-2">
                 <label for="product_context">產品內容</label>
                 <textarea class="form-control" id="product_context" rows="3" name="product_context">{{ $record->product_context }}</textarea>
