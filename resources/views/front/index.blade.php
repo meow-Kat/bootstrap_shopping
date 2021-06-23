@@ -373,79 +373,79 @@
             </div>
 
             <!-- 買東西選SIZE -->
-            <div class="row py-5">
-                <div class="col py-5">
-                    <div class="card flex-md-row border-0">
-                        <img src="https://dummyimage.com/400x400" alt="" class="m-auto buy-size">
-                        <div class="card-body col-lg-6 mt-1 ">
-                            <div class="row">
-                                <div class="col">
-                                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                                    <h1 class="card-title">Card title</h1>
-                                    <div class="row">
-                                        <div class="col d-flex align-items-center">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <p class="card-text px-3 border-right">4 Reviews</p>
-                                            <i class="fab fa-facebook-square pl-3"></i>
-                                            <i class="fab fa-twitter px-2"></i>
-                                            <i class="fas fa-comment-dots"></i>
+            <form action="">
+                <div class="row py-5">
+                    <div class="col py-5">
+                        <div class="card flex-md-row border-0">
+                            <img src="{{ $record[0]->product_photo }}" alt="" class="m-auto buy-size">
+                            <div class="card-body col-lg-6 mt-1 ">
+                                <div class="row">
+                                    <div class="col">
+                                        <h6 class="card-subtitle mb-2 text-muted">{{ $record[0]->type->type_name }}</h6>
+                                        <h1 class="card-title">{{ $record[0]->product_name }}</h1>
+                                        <div class="row">
+                                            <div class="col d-flex align-items-center">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <p class="card-text px-3 border-right">4 Reviews</p>
+                                                <i class="fab fa-facebook-square pl-3"></i>
+                                                <i class="fab fa-twitter px-2"></i>
+                                                <i class="fas fa-comment-dots"></i>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row py-4">
-                                <div class="col">
-                                    <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                        Minima aliquam a corrupti quos animi nostrum delectus unde alias illum at quod
-                                        eius quas quibusdam qui eum repudiandae, vitae vel fugit!</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col d-flex align-items-center">
-                                    <i class="mr-2">Color</i>
-                                    <button type="button" class="btn-outline-primary color"></button>
-                                    <button type="button" class="btn-outline-primary color color-black mx-1"></button>
-                                    <button type="button" class="btn-outline-primary color color-purple mr-4"></button>
-                                    <i class="mr-2">Size</i>
-                                    <div class="relative">
-                                        <select
-                                            class="rounded py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pr-3 ">
-                                            <option>SM</option>
-                                            <option>M</option>
-                                            <option>L</option>
-                                            <option>XL</option>
-                                        </select>
-
+                                <div class="row py-4">
+                                    <div class="col">
+                                        <p class="card-text">{{ $record[0]->product_context }}</p>
                                     </div>
                                 </div>
-
-
-                            </div>
-                            <hr class="featurette-divider my-3">
-                            <div class="row">
-                                <div class="col d-flex align-items-center">
-                                    <p>$aaa</p>
+                                <div class="row">
+                                    <div class="col d-flex align-items-center">
+                                        <i class="mr-2">Color</i>
+                                        @foreach ($color as $item)
+                                            <button type="button" class="btn-outline-primary color mx-1" style="background-color: {{ $item }}"></button>
+                                        @endforeach
+                                        <i class="mr-2">Size</i>
+                                        <div class="relative">
+                                            <select
+                                                class="rounded py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pr-3 ">
+                                                @foreach ($size as $item)
+                                                    <option value="{{ $item }}">{{ $item }}</option>                                              
+                                                @endforeach
+                                            </select>
+    
+                                        </div>
+                                    </div>
+    
+    
                                 </div>
-                                <div class="col d-flex justify-content-end">
-                                    <a href="#" class="btn btn-primary">Go</a>
-                                    <button class="heart border-0 ml-3" type="submit"><i
-                                            class="fas fa-heart"></i></button>
+                                <hr class="featurette-divider my-3">
+                                <div class="row">
+                                    <div class="col d-flex align-items-center">
+                                        <p>$ {{ $record[0]->product_price }}</p>
+                                    </div>
+                                    <div class="col d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary">Go</button>
+                                        <button class="heart border-0 ml-3" type="submit"><i
+                                                class="fas fa-heart"></i></button>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
+
 
             <!-- 8個卡片 -->
             <div class="row py-5">
                 <div class="col">
                     <div class="row">
+                        
                         <div class="col d-flex flex-wrap p-0">
                             <div class="card col-md-6 col-lg-3 border-0 ">
                                 <img src="https://dummyimage.com/400x205" class="card-img-top" alt="...">

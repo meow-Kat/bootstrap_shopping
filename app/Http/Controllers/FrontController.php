@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
 {
     //
     public function homepage() {
-        return view('front.index');
+        $color = Product::COLOR;
+        $size = Product::SIZE;
+        $record = Product::with('type')->get();
+        return view('front.index', compact('color','size','record'));
     }
 
     public function shoppingCart1()

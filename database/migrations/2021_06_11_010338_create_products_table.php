@@ -15,13 +15,14 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-
-            $table->char('product_classify')->comment('產品分類')->nullable();
-            $table->longText('product_photo')->comment('產品圖片')->nullable();
-            $table->char('product_name')->comment('產品名稱')->nullable();
-            $table->text('product_context')->comment('產品內容')->nullable();
-            $table->integer('product_price')->comment('價格')->nullable();
-
+            $table->longText('product_photo')->comment('產品圖片')->default('https://placeholder.pics/svg/400x400');
+            $table->char('product_name')->comment('產品名稱');
+            $table->text('product_context')->comment('產品內容');
+            $table->integer('product_price')->comment('價格');
+            $table->boolean('top')->comment('置頂')->default('0');
+            $table->string('product_size')->comment('尺寸');
+            $table->string('product_color')->comment('顏色');
+            $table->integer('product_type_id')->comment('對應的種類id');
             $table->timestamps();
         });
     }

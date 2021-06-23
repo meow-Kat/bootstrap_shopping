@@ -19,19 +19,25 @@
             <th>分類</th>
             <th>照片</th>
             <th>名稱</th>
-            <th>內容</th>
             <th>價格</th>
+            <th>至頂</th>
+            <th>尺寸</th>
             <th>操作</th>
         </tr>
     </thead>
     <tbody>
         @foreach ($record as $item)
         <tr>
-            <td>{{ $item->product_classify }}</td>
+            <td>{{ $item->type->type_name }}</td>
             <td><img src="{{ $item->product_photo }}" alt="" style="width: 300px; height: 200px;"></td>
             <td>{{ $item->product_name }}</td>
-            <td>{{ $item->product_context }}</td>
             <td>{{ $item->product_price }}</td>
+            <th></th>
+            <th>
+                @foreach ($item as $size)
+                    {{ $size }},
+                @endforeach
+            </th>
             <td>
                 <a href="{{ asset('/admin/product/edit') }}/{{ $item->id }}" type="button" class="btn btn-primary btn-sm d-flex justify-content-center">Edit</a>
                 <form action="{{ asset('/admin/product/delete') }}/{{  $item->id }} " method="POST">
@@ -49,8 +55,9 @@
             <th>分類</th>
             <th>照片</th>
             <th>名稱</th>
-            <th>內容</th>
             <th>價格</th>
+            <th>至頂</th>
+            <th>尺寸</th>
             <th>操作</th>
         </tr>
     </tfoot>
