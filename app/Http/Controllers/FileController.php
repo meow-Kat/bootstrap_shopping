@@ -36,18 +36,4 @@ class FileController extends Controller
         return $path;
     }
 
-    public function deleteImage(Request $request){
-        // 送出 JS 的刪除來這邊接收
-        // 從id找要刪的資料
-        $old_record = Product::find($request->id);
-        //判斷檔案是否存在
-        if(file_exists(public_path() . $old_record->photo)){
-            // 有就刪
-            File::delete(public_path() . $old_record->photo);
-        }
-        // 刪除
-        $old_record->delete();
-        
-        return 'success';
-    }
 }

@@ -83,21 +83,14 @@ class ProductController extends Controller
     public function push(Request $request)
     {
         $requestData = $request->all();
+
         if ($request->hasFile('product_photo')) {                                            
             $requestData['product_photo'] = FileController::imgUpload($request->file('product_photo'),'product');
         }
+        Product::create($requestData);
 
-        $new_recode = Product::create($requestData);
-
-        if ($request->hasFile('product_photos')) {
-            foreach($request->file('product_photos') as $item){  
-                $path = FileController::imgUpload($item,'product');
-                
-                $input['size'] = json_encode($request->product_size);
-                Product::create($request->all());
-            }
-        }
-
+        $input['size'] = json_encode($request->product_size);
+        
         return redirect('/admin/product')->with('message', '新增成功');
     }
 
