@@ -31,32 +31,43 @@ class ProductController extends Controller
 
     public function update(Request $request,$id)
     {
-        $old_record = Product::find($id);
+        // $old_record = Product::find($id);
+        $record = Product::with('photo')->find($id);
+        $requestData =  $request->all();
 
-        if($request->hasFile('product_photo')){
-
-            File::delete(public_path(). $old_record->product_photo);
-            $file = $request->file('product_photo');
-            if (!is_dir('upload/')) {
-                mkdir('upload/');
-            }
-            $extenstion = $request->product_photo->getClientOriginalExtension();
-            $filename = md5(uniqid(rand())) . '.' . $extenstion;
-            $path = '/upload/' . $filename;
-            move_uploaded_file($file, public_path() . $path);
-            $old_record->product_photo = $path;
+        // 單張圖片編輯
+        if ($request->hasFile('product_photo')) {
+            File::delete(public_path().$record->product_photo);
+            $path = FileController::imgUpload($request->file('product_photo'),'product');
+            $requestData['product_photo'] = $path;
         }
+        $record->update($requestData);
 
-        $old_record->product_name = $request->product_name;
-        $old_record->product_context = $request->product_context;
-        $old_record->top =  $request->top;
-        $old_record->product_size = $request->product_size;
-        $old_record->product_color = $request->product_color;
-        $old_record->product_type_id = $request->product_type_id;
+
+        // if($request->hasFile('product_photo')){
+
+        //     File::delete(public_path(). $old_record->product_photo);
+        //     $file = $request->file('product_photo');
+        //     if (!is_dir('upload/')) {
+        //         mkdir('upload/');
+        //     }
+        //     $extenstion = $request->product_photo->getClientOriginalExtension();
+        //     $filename = md5(uniqid(rand())) . '.' . $extenstion;
+        //     $path = '/upload/' . $filename;
+        //     move_uploaded_file($file, public_path() . $path);
+        //     $old_record->product_photo = $path;
+        // }
+
+        // $old_record->product_name = $request->product_name;
+        // $old_record->product_context = $request->product_context;
+        // $old_record->top =  $request->top;
+        // $old_record->product_size = $request->product_size;
+        // $old_record->product_color = $request->product_color;
+        // $old_record->product_type_id = $request->product_type_id;
         // 存檔
         $input = $request->all();
         $input['size'] = json_encode($request->product_size);
-        $old_record->save();
+        // $old_record->save();
 
         return redirect('admin/product')->with('message', '修改成功');
     }
