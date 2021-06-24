@@ -84,11 +84,11 @@ class ProductController extends Controller
     {
         $requestData = $request->all();
 
-        if ($request->hasFile('product_photo')) {                                            
-            $requestData['product_photo'] = FileController::imgUpload($request->file('product_photo'),'product');
-        }
-        Product::create($requestData);
-
+        // if ($request->hasFile('product_photo')) {                                            
+            // $requestData['product_photo'] = FileController::imgUpload($request->file('product_photo'),'product');
+        // }
+        $a = Product::create($requestData);
+            dd($a);
         $input['size'] = json_encode($request->product_size);
         
         return redirect('/admin/product')->with('message', '新增成功');
