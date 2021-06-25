@@ -32,12 +32,14 @@
             <td><img src="{{ $item->product_photo }}" alt="" style="width: 300px; height: 200px;"></td>
             <td>{{ $item->product_name }}</td>
             <td>{{ $item->product_price }}</td>
-            <th></th>
-            <th>
-                @foreach ($item as $size)
-                    {{ $size }},
+            <?php
+                $size = json_decode($item->product_size);
+            ?>
+            <td>
+                @foreach ($size as $sizes)
+                    {{$sizes}},
                 @endforeach
-            </th>
+            </td>
             <td>
                 <a href="{{ asset('/admin/product/edit') }}/{{ $item->id }}" type="button" class="btn btn-primary btn-sm d-flex justify-content-center">Edit</a>
                 <form action="{{ asset('/admin/product/delete') }}/{{  $item->id }} " method="POST">
