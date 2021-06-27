@@ -25,17 +25,17 @@
 
                 <div class="form-group">
                     <label class="pr-3" for="product_size">尺寸</label>
-                    <label><input type="checkbox" class="mx-2" id="size[]" name="product_size" value="XS">XS</label>
-                    <label><input type="checkbox" class="mx-2" id="size[]" name="product_size" value="S" >S</label>
-                    <label><input type="checkbox" class="mx-2" id="size[]" name="product_size" value="M" >M</label>
-                    <label><input type="checkbox" class="mx-2" id="size[]" name="product_size" value="L" >L</label>
-                    <label><input type="checkbox" class="mx-2" id="size[]" name="product_size" value="XL" >XL</label>
-                    <label><input type="checkbox" class="mx-2" id="size[]" name="product_size" value="XXL" >XXL</label>
+                    <label><input type="checkbox" class="mx-2" id="size" name="product_size[]" value="XS" @if( in_array('XS',$size) )  checked @endif>XS</label>
+                    <label><input type="checkbox" class="mx-2" id="size" name="product_size[]" value="S" @if( in_array('S',$size) )  checked @endif>S</label>
+                    <label><input type="checkbox" class="mx-2" id="size" name="product_size[]" value="M" @if( in_array('M',$size) )  checked @endif>M</label>
+                    <label><input type="checkbox" class="mx-2" id="size" name="product_size[]" value="L" @if( in_array('L',$size) )  checked @endif>L</label>
+                    <label><input type="checkbox" class="mx-2" id="size" name="product_size[]" value="XL" @if( in_array('XL',$size) )  checked @endif>XL</label>
+                    <label><input type="checkbox" class="mx-2" id="size" name="product_size[]" value="XXL" @if( in_array('XXL',$size) )  checked @endif>XXL</label>
                 </div>
 
                 <div class="form-group color-group">
                     <label class="pr-3" for="product_color">顏色</label>
-                    <input type="color" class="mx-2" id="product_color[]" name="product_color" value="{{ $record->product }}">
+                    <input type="color" class="mx-2" id="product_color" name="product_color[]" value="{{ $record->product }}">
                     <span class="add-color-space"></span>
                     <button type="button" class="btn btn-sm btn-secondary">增加顏色</button>
                 </div>
@@ -84,5 +84,6 @@
                 reader.readAsDataURL(input.files[0])
             }
         }
+
     </script>
 @endsection

@@ -86,9 +86,9 @@
         }
 
         let addColor = document.querySelector('.btn-secondary')
-        let color = document.querySelector('.add-color-space')
         addColor.onclick = function () {
-            color.innerHTML = `<input type="color" class="mx-2" id="color[]" name="color">
+            var color = document.querySelector('.add-color-space')
+            color.innerHTML = `<input type="color" class="mx-2" id="color" name="color[]">
             <span class="add-color-space"></span>`
         }
     </script>

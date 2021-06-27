@@ -26,48 +26,22 @@ class ProductController extends Controller
     {
         $record = Product::find($id);
         $type = ProductType::get();
-        return view('admin.product.edit', compact('record', 'type'));
+        $size = json_decode($record->product_size);
+        return view('admin.product.edit', compact('record', 'type','size'));
     }
 
     public function update(Request $request,$id)
     {
-        // $old_record = Product::find($id);
-        $record = Product::with('photo')->find($id);
+
+        $record = Product::find($id);
         $requestData =  $request->all();
 
         // 單張圖片編輯
         if ($request->hasFile('product_photo')) {
-            File::delete(public_path().$record->product_photo);
-            $path = FileController::imgUpload($request->file('product_photo'),'product');
-            $requestData['product_photo'] = $path;
+            $requestData['product_photo'] = FileController::imgUpload($request->file('product_photo'),'product');
         }
+
         $record->update($requestData);
-
-
-        // if($request->hasFile('product_photo')){
-
-        //     File::delete(public_path(). $old_record->product_photo);
-        //     $file = $request->file('product_photo');
-        //     if (!is_dir('upload/')) {
-        //         mkdir('upload/');
-        //     }
-        //     $extenstion = $request->product_photo->getClientOriginalExtension();
-        //     $filename = md5(uniqid(rand())) . '.' . $extenstion;
-        //     $path = '/upload/' . $filename;
-        //     move_uploaded_file($file, public_path() . $path);
-        //     $old_record->product_photo = $path;
-        // }
-
-        // $old_record->product_name = $request->product_name;
-        // $old_record->product_context = $request->product_context;
-        // $old_record->top =  $request->top;
-        // $old_record->product_size = $request->product_size;
-        // $old_record->product_color = $request->product_color;
-        // $old_record->product_type_id = $request->product_type_id;
-        // 存檔
-        $input = $request->all();
-        $input['size'] = json_encode($request->product_size);
-        // $old_record->save();
 
         return redirect('admin/product')->with('message', '修改成功');
     }

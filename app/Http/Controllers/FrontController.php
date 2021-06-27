@@ -9,10 +9,8 @@ class FrontController extends Controller
 {
     //
     public function homepage() {
-        $color = Product::COLOR;
-        $size = Product::SIZE;
         $record = Product::with('type')->get();
-        return view('front.index', compact('color','size','record'));
+        return view('front.index', compact('record'));
     }
 
     public function shoppingCart1()
