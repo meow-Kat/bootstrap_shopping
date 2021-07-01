@@ -17,9 +17,10 @@ class ProductController extends Controller
     }
 
     public function product()
-    {
+    {   
         $record = Product::get();
-        return view('admin.product.index', compact('record'));
+        $size = Product::SIZE;
+        return view('admin.product.index', compact('record', 'size'));
     }
 
     public function edit($id)

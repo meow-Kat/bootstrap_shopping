@@ -6,7 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-
+    const SIZE = [
+        'S',
+        'M',
+        'L',
+        'XL',
+        'XXL'
+    ];
+    const COLOR = [
+        ''
+    ];
 
 
     // $fillable 資料庫才能存     資料表有什麼94都要寫進去 id是主鍵不用寫
