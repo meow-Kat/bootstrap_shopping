@@ -17,7 +17,8 @@
                 <img style="width: 450px; height: 300px;" id="preview_progressbarTW_img"
                     src="https://dummyimage.com/600x400">
                 <input class="py-3" type="file" onchange="readURL(this)" targetID="preview_progressbarTW_img"
-                    accept="image/gif, image/jpeg, image/png" name="product_photo">
+                    {{-- 接受圖片型式 --}}
+                accept="image/*" name="product_photo">
                 </div>
 
                 <div class="form-group">
