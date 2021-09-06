@@ -71,8 +71,8 @@ class ProductController extends Controller
     public function add()
     {
         $type = ProductType::get();
-
-        return view('admin.product.add',compact('type'));
+        $size = Product::SIZE;
+        return view('admin.product.add',compact('type', 'size'));
     }
 
 }
