@@ -17,7 +17,7 @@ class ProductController extends Controller
     }
 
     public function product()
-    {   
+    {
         $record = Product::get();
         $size = Product::SIZE;
         return view('admin.product.index', compact('record', 'size'));
@@ -58,13 +58,13 @@ class ProductController extends Controller
     public function push(Request $request)
     {
         $requestData = $request->all();
-        
-        if ($request->hasFile('product_photo')) {                                            
+
+        if ($request->hasFile('product_photo')) {
             $requestData['product_photo'] = FileController::imgUpload($request->file('product_photo'),'product');
         }
 
         Product::create($requestData);
-        
+
         return redirect('/admin/product')->with('message', '新增成功');
     }
 

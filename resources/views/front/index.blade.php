@@ -377,12 +377,12 @@
                 <div class="row py-5">
                     <div class="col py-5">
                         <div class="card flex-md-row border-0">
-                            <img src="{{ $record[0]->product_photo }}" alt="" class="m-auto buy-size">
+                            {{-- <img src="{{ $record->product_photo }}" alt="" class="m-auto buy-size"> --}}
                             <div class="card-body col-lg-6 mt-1 ">
                                 <div class="row">
                                     <div class="col">
-                                        <h6 class="card-subtitle mb-2 text-muted">{{ $record[0]->type->type_name }}</h6>
-                                        <h1 class="card-title">{{ $record[0]->product_name }}</h1>
+                                        {{-- <h6 class="card-subtitle mb-2 text-muted">{{ $record->type->type_name }}</h6> --}}
+                                        {{-- <h1 class="card-title">{{ $record->product_name }}</h1> --}}
                                         <div class="row">
                                             <div class="col d-flex align-items-center">
                                                 <i class="fas fa-star"></i>
@@ -400,7 +400,7 @@
                                 </div>
                                 <div class="row py-4">
                                     <div class="col">
-                                        <p class="card-text">{{ $record[0]->product_context }}</p>
+                                        {{-- <p class="card-text">{{ $record->product_context }}</p> --}}
                                     </div>
                                 </div>
                                 <div class="row">
@@ -414,19 +414,19 @@
                                             <select
                                                 class="rounded py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pr-3 ">
                                                 {{-- @foreach ($size as $item)
-                                                    <option value="{{ $item }}">{{ $item }}</option>                                              
+                                                    <option value="{{ $item }}">{{ $item }}</option>
                                                 @endforeach --}}
                                             </select>
-    
+
                                         </div>
                                     </div>
-    
-    
+
+
                                 </div>
                                 <hr class="featurette-divider my-3">
                                 <div class="row">
                                     <div class="col d-flex align-items-center">
-                                        <p>$ {{ $record[0]->product_price }}</p>
+                                        {{-- <p>$ {{ $record[0]->product_price }}</p> --}}
                                     </div>
                                     <div class="col d-flex justify-content-end">
                                         <button type="submit" class="btn btn-primary">Go</button>
@@ -445,7 +445,7 @@
             <div class="row py-5">
                 <div class="col">
                     <div class="row">
-                        
+
                         <div class="col d-flex flex-wrap p-0">
                             <div class="card col-md-6 col-lg-3 border-0 ">
                                 <img src="https://dummyimage.com/400x205" class="card-img-top" alt="...">
@@ -455,7 +455,7 @@
                                         the
                                         bulk
                                         of the card's content.</p>
-                                    <button class="btn btn-primary add-btn" data-id="{{ $productId }}">加入購物車</button>
+                                    {{-- <button class="btn btn-primary add-btn" data-id="{{ $productId }}">加入購物車</button> --}}
                                 </div>
                             </div>
                             <div class="card col-md-6 col-lg-3 border-0">
@@ -618,7 +618,7 @@
                     return response.text();
                 }).then(function (result) {
                     if (result == 'success') {
-                        alert('加入成功')                        
+                        alert('加入成功')
                     }
                 })
             }

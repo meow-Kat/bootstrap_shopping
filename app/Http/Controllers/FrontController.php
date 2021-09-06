@@ -40,7 +40,7 @@ class FrontController extends Controller
     }
     public function addItem(Request $request)
     {
-        $product = Product::find($request->productId)
+        $product = Product::find($request->productId);
         // array format
         \Cart::add(array(
             //下面的是購物車都寫好的
@@ -49,7 +49,7 @@ class FrontController extends Controller
             'price' => $product->product_price,
             'quantity' => 1,
             // ↓ 自定義才可以放自己的東西
-            'attributes' => array( 
+            'attributes' => array(
                 'product_photo'=>$product->product_photo,
             )
         ));
@@ -58,6 +58,7 @@ class FrontController extends Controller
     public function content()
     {
         $cartCollection = \Cart::getContent();
+        dd($cartCollection);
     }
 
     public function clear()
@@ -67,7 +68,7 @@ class FrontController extends Controller
     public function update(Request $request)
     {
         \Cart::upadte($request->productId,array(
-            'quantity' = array(
+            'quantity' => array(
                 'relative' => false,
                 'value' => $request->newQty
             ),
