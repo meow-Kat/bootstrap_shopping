@@ -28,10 +28,10 @@ class ProductController extends Controller
         $record = Product::find($id);
         $type = ProductType::get();
         $size = json_decode($record->product_size);
-        return view('admin.product.edit', compact('record', 'type','size'));
+        return view('admin.product.edit', compact('record', 'type', 'size'));
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
 
         $record = Product::find($id);
@@ -39,7 +39,7 @@ class ProductController extends Controller
 
         // 單張圖片編輯
         if ($request->hasFile('product_photo')) {
-            $requestData['product_photo'] = FileController::imgUpload($request->file('product_photo'),'product');
+            $requestData['product_photo'] = FileController::imgUpload($request->file('product_photo'), 'product');
         }
 
         $record->update($requestData);
@@ -56,14 +56,32 @@ class ProductController extends Controller
     }
 
     public function push(Request $request)
-    {
-        $requestData = $request->all();
+    {   
+        $product = Product::get();
+        // $requestData = $request->all();
 
+        // dd($request->all());
         if ($request->hasFile('product_photo')) {
-            $requestData['product_photo'] = FileController::imgUpload($request->file('product_photo'),'product');
+            $requestData['product_photo'] = FileController::imgUpload($request->file('product_photo'), 'product');
         }
 
-        Product::create($requestData);
+        if ($request->top === null) {
+            $top = 0;
+        } else {
+            $top = $request->input('top');
+        }
+        // $color = json_encode($request['size']);
+        $color = json_encode($request['color']);
+        // dd($color);
+        Product::create([
+            'product_type_id' => $request->product_type_id,
+            'product_name' => $request->product_name,
+            'product_price' => $request->product_price,
+            'product_context' => $request->product_context,
+            'product_size' => $request['size'],
+            'product_color' => $request['color'],
+            'top' => $request->top,
+        ]);
 
         return redirect('/admin/product')->with('message', '新增成功');
     }
@@ -72,7 +90,6 @@ class ProductController extends Controller
     {
         $type = ProductType::get();
         $size = Product::SIZE;
-        return view('admin.product.add',compact('type', 'size'));
+        return view('admin.product.add', compact('type', 'size'));
     }
-
 }

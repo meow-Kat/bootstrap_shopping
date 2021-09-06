@@ -22,7 +22,7 @@
 
                 <div class="form-group">
                     <label class="py-2" for="top">是否置頂</label>
-                    <input type="checkbox" class="mx-2" id="top" name="top" value="1">
+                    <input type="checkbox" class="mx-2" id="top" name="top" value="1" >
                 </div>
 
 
