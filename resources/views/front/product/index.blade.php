@@ -11,10 +11,6 @@
         <div class="row my-3">
             <a href="/product" class="btn btn-primary mr-2">All</a>
             @foreach ( $types as $type )
-             {{-- 打?後面就可以傳參數 --}}
-             {{-- @php
-                 dd($type->type_name);
-             @endphp --}}
                 <a href="/product?type_id={{ $type->id }}" class="btn btn-primary mr-2">{{ $type->type_name }}</a>
             @endforeach
         </div>
@@ -27,7 +23,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $item->product_name }}</h5>
                         <p class="card-text">$ {{ $item->product_price }}</p>
-                        <a href="#" class="btn btn-primary">加入購物車</a>
+                        <button class="btn btn-primary addBtn" data-id="{{ $item->id }}">加入購物車</button>
                     </div>
                 </div>
             @endforeach
@@ -38,5 +34,21 @@
 @endsection
 
 @section('js')
+<script>
+    var addBtns = document.querySelectorAll('.addBtn')
+    addBtns.forEach(function ( addBtn ) {
+        addBtn.addEventListener('click',function () {
+            var productID = $this.dataset.id
 
+            var formData = new FormData()
+            formData.append('_token', '{{csrf_token()}}')
+            formData.append('productID',productID)
+
+            fetch('/shopping_cart/add', {
+                'method': 'POST',
+                'body':formData
+            })
+        })
+    })
+</script>
 @endsection

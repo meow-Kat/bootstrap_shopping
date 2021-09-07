@@ -20,45 +20,19 @@ class FrontController extends Controller
         return view('front.index', compact('record','topSession','colors','sizes'));
     }
 
-    public function product()
+    public function product(Request $request)
     {
         $record = Product::with('type')->get();
-        $types = ProductType::get();
-
-        return view('front.product.index', compact('record','types'));
-    }
-
-    public function type(Request $request)
-    {
         $types = ProductType::get();
         if($request->type_id){
             $record = Product::where('product_type_id',$request->type_id)->get();
         }else{
             $record = Product::get();
         }
-        dd($types);
-        return view('front.product.index',compact('record','types'));
+        return view('front.product.index', compact('record','types'));
     }
 
-    public function shoppingCart1()
-    {
-        return view('front.shopping-1');
-    }
 
-    public function shoppingCart2()
-    {
-        return view('front.shopping-2');
-    }
-
-    public function shoppingCart3()
-    {
-        return view('front.shopping-3');
-    }
-
-    public function shoppingCart4()
-    {
-        return view('front.shopping-4');
-    }
 
     public function login()
     {

@@ -21,10 +21,18 @@ Route::get('/shopping-3', 'FrontController@shoppingCart3');
 Route::get('/shopping-4', 'FrontController@shoppingCart4');
 Route::get('/shopping-4', 'FrontController@shoppingCart4');
 
+Route::prefix('shopping_cart')->group(function ()
+{
+    Route::post('/add', 'ShoppingCartController@add');
+    Route::get('/content', 'ShoppingCartController@content');
+});
+
+
 Route::post('/add_item', 'FrontController@addItem');
 // Route::post('/update_item', 'FrontController@updateItem');
 
 Route::get('/product', 'FrontController@product');
+
 Route::get('/content', 'FrontController@content');
 
 Route::get('/clear', 'FrontController@clear');
