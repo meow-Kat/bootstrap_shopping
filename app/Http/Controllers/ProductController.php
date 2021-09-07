@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use App\Http\Controllers\FileController;
 
+
+
 class ProductController extends Controller
 {
     //
@@ -60,7 +62,6 @@ class ProductController extends Controller
         $product = Product::get();
         // $requestData = $request->all();
 
-        // dd($request->all());
         if ($request->hasFile('product_photo')) {
             $requestData['product_photo'] = FileController::imgUpload($request->file('product_photo'), 'product');
         }
@@ -70,7 +71,7 @@ class ProductController extends Controller
         } else {
             $top = $request->input('top');
         }
-        // $color = json_encode($request['size']);
+        $size = json_encode($request['size']);
         $color = json_encode($request['color']);
         // dd($color);
         Product::create([
@@ -78,9 +79,9 @@ class ProductController extends Controller
             'product_name' => $request->product_name,
             'product_price' => $request->product_price,
             'product_context' => $request->product_context,
-            'product_size' => $request['size'],
-            'product_color' => $request['color'],
-            'top' => $request->top,
+            'product_size' => $size,
+            'product_color' => $color,
+            'top' => $top,
         ]);
 
         return redirect('/admin/product')->with('message', '新增成功');

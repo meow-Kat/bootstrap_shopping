@@ -22,7 +22,7 @@
 
                 <div class="form-group">
                     <label class="py-2" for="top">是否置頂</label>
-                    <input type="checkbox" class="mx-2" id="top" name="top" value="1" >
+                    <input type="checkbox" class="mx-2" id="top" name="top" value="1">
                 </div>
 
 
@@ -35,9 +35,10 @@
                     <label><input type="checkbox" class="mx-2" name="product_size[]" value="XL">XL</label>
                     <label><input type="checkbox" class="mx-2" name="product_size[]" value="XXL">XXL</label> --}}
                     @foreach ($size as $key => $item)
-                        <p class="mb-0 mr-2" style="line-height: 25px;">{{ $item }}</p>
-                        <input id="size" type="checkbox" class="form-control mr-3" style="width: 25px; height: 25px;"
-                            name="size[]" value="{{ $item }}" autocomplete="size" autofocus>
+                        <p class="mb-0 mr-2" style="line-height: 25px; display:inline-block;">{{ $item }}</p>
+                        <input id="size" type="checkbox" class="form-control mr-3"
+                            style="width: 25px; height: 25px; display:inline-block;" name="size[]"
+                            value="{{ $item }}" autocomplete="size" autofocus>
                     @endforeach
                 </div>
 
@@ -46,12 +47,12 @@
                     {{-- <input type="color" class="mx-2" id="product_color[]" name="product_color">
                     <span class="add-color-space"></span>
                     <button type="button" class="btn btn-sm btn-secondary">增加顏色</button> --}}
-                    <input class="btn btn-outline-primary btn-sm h-75 addColor" name="addBtn" type="button" value="+">
+                    {{-- <input class="btn btn-outline-primary btn-sm h-75 addColor" name="addBtn" type="button" value="+"> --}}
                     <div class="row m-0 d-flex align-items-center mb-3">
                         <input id="color" type="color" class="form-control w-25 mr-3" name="color[]" autocomplete="color"
                             autofocus>
-                        <input class="btn btn-outline-danger btn-sm h-75 addColor" name="addBtn" type="button" value='-'
-                            onclick='$(this).parent().remove();'>
+                        {{-- <input class="btn btn-outline-danger btn-sm h-75 addColor" name="addBtn" type="button" value='-'
+                            onclick='$(this).parent().remove();'> --}}
                     </div>
                 </div>
             </div>
@@ -101,19 +102,19 @@
         // addColor.onclick = function() {
         //     var color = document.querySelector('.add-color-space')
         //     color.innerHTML = `<input type="color" class="mx-2" id="color" name="color[]">
-        //     <span class="add-color-space"></span>`
-        
+    //     <span class="add-color-space"></span>`
+
         // 增加顏色
-        var addColor = document.querySelector('.addColor')
-        // var i = 1;
-        addColor.addEventListener('click', function() {
-            // i++;
-            var newColor = document.createElement('div');
-            newColor.className = 'row m-0 d-flex align-items-center';
-            newColor.innerHTML =
-                "<input type='color' name='color[]' class='form-control w-25 mb-3 mr-3'><input type='button' name='removeBtn' class='btn btn-sm btn-outline-danger mb-3' value='-' onclick='$(this).parent().remove();'>"
-            document.getElementById('newColor').appendChild(newColor);
-        });
-        }
+        // var addColor = document.querySelector('.addColor')
+        // // var i = 1;
+        // addColor.addEventListener('click', function() {
+        //     // i++;
+        //     var newColor = document.createElement('div')
+        //     newColor.className = 'row m-0 d-flex align-items-center'
+        //     newColor.innerHTML =
+        //         "<input type='color' name='color[]' class='form-control w-25 mb-3 mr-3'><input type='button' name='removeBtn' class='btn btn-sm btn-outline-danger mb-3' value='-' onclick='$(this).parent().remove();'>"
+        //     document.getElementById('newColor').appendChild(newColor)
+        // });
+        // }
     </script>
 @endsection
