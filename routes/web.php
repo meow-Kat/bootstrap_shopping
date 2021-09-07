@@ -24,7 +24,9 @@ Route::get('/shopping-4', 'FrontController@shoppingCart4');
 Route::post('/add_item', 'FrontController@addItem');
 // Route::post('/update_item', 'FrontController@updateItem');
 
+Route::get('/product', 'FrontController@product');
 Route::get('/content', 'FrontController@content');
+
 Route::get('/clear', 'FrontController@clear');
 
 

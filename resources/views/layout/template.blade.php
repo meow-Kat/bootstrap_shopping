@@ -29,8 +29,8 @@
         </button>
         <div class="collapse navbar-collapse nav-hidden" id="navbarNav">
             <div class="navbar-nav ml-auto d-flex align-items-center">
-                <a class="nav-item nav-link active px-3 ml-3 my-link-ctrl text-center" href="{{ asset('/shopping-1') }}">Product</a>
-                <a class="nav-item nav-link px-3 ml-3 my-link-ctrl text-center" href="#">Portfolio</a>
+                <a class="nav-item nav-link active px-3 ml-3 my-link-ctrl text-center" href="{{ asset('/shopping-1') }}">Shopping List</a>
+                <a class="nav-item nav-link px-3 ml-3 my-link-ctrl text-center" href="{{ asset('/product') }}">Product</a>
                 <a class="nav-item nav-link px-3 ml-3 my-link-ctrl text-center" href="#">About</a>
                 <a class="nav-item nav-link px-3 ml-3 my-link-ctrl text-center" href="#">Contact</a>
 

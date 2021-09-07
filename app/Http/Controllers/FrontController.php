@@ -19,6 +19,12 @@ class FrontController extends Controller
         return view('front.index', compact('record','topSession','colors','sizes'));
     }
 
+    public function product()
+    {
+        $record = Product::with('type')->get();
+        return view('front.product.index', compact('record'));
+    }
+
     public function shoppingCart1()
     {
         return view('front.shopping-1');
