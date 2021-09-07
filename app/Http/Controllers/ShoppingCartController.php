@@ -48,6 +48,5 @@ class ShoppingCartController extends Controller
 
     public function content()
     {
-        # code...
     }
 }

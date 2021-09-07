@@ -48,7 +48,7 @@
                                 <h4>訂單明細</h4>
                             </div>
                         </div>
-                        @foreach ($cartProduct as $item)
+                        {{-- @foreach ($cartProduct as $item) --}}
                         <div class="row py-2">
                             <div class="col d-flex align-items-center">
                                 <div class="pic-1" style="background-image: url()"></div>
@@ -67,14 +67,15 @@
                                             onchange="change(this)">
                                         <button type="button" class="add" onclick="add(this)">+</button>
                                     </div>
-                                    <p class="my-order-price px-4" data-price="{{ $item->product_price }}">$ {{ $item->product_price }}</p>
+                                    {{-- <p class="my-order-price px-4" data-price="{{ $item->product_price }}">$ {{ $item->product_price }}</p> --}}
+                                    <p class="my-order-price px-4" data-price="25">$ 25</p>
                                 </div>
 
                             </div>
                         </div>
 
                         <hr class="featurette-divider">
-                        @endforeach
+                        {{-- @endforeach --}}
                         <div class="row py-2">
                             <div class="col d-flex align-items-center">
                                 <div class="pic-1"></div>
@@ -257,24 +258,25 @@
         total_all.innerHTML = `$ ` + total_sum_calc
 
         // 送到購物車
-        let formDate = new FormData()
-        formDate.append('_token', '{{ csrf_token }}')
-        formDate.append('productId',input.getAttribute('data-id'))
-        formDate.append('newQty',newQty)
-        fetch('/update',{
-            'method':post,
-            'body': formDate
-        }).then(function (responce) {
-            return response.text()
-        })then(function (result) {
-            if (newQty < 1) {
-                input.value = 1
-            }else{
-                input.value = newQty
-            }
-            let price = qtyArea.nextElementSibling
-            price.innerHTML = '$ ' + (price.getAttribute(''))
-        })
+        // let formDate = new FormData()
+                                    // ↓---花括號----↓　才是正確的 
+        // formDate.append('_token', '<< csrf_token >>')
+        // formDate.append('productId',input.getAttribute('data-id'))
+        // formDate.append('newQty',newQty)
+        // fetch('/update',{
+        //     'method':post,
+        //     'body': formDate
+        // }).then(function (responce) {
+        //     return response.text()
+        // })then(function (result) {
+        //     if (newQty < 1) {
+        //         input.value = 1
+        //     }else{
+        //         input.value = newQty
+        //     }
+        //     let price = qtyArea.nextElementSibling
+        //     price.innerHTML = '$ ' + (price.getAttribute(''))
+        // })
     }
 
 
