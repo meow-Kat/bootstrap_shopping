@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\ProductType;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -22,7 +23,21 @@ class FrontController extends Controller
     public function product()
     {
         $record = Product::with('type')->get();
-        return view('front.product.index', compact('record'));
+        $types = ProductType::get();
+
+        return view('front.product.index', compact('record','types'));
+    }
+
+    public function type(Request $request)
+    {
+        $types = ProductType::get();
+        if($request->type_id){
+            $record = Product::where('product_type_id',$request->type_id)->get();
+        }else{
+            $record = Product::get();
+        }
+        dd($types);
+        return view('front.product.index',compact('record','types'));
     }
 
     public function shoppingCart1()

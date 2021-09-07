@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layout.template')
 
 @section('css')
 
@@ -10,8 +10,11 @@
     <div class="container">
         <div class="row my-3">
             <a href="/product" class="btn btn-primary mr-2">All</a>
-            @foreach ($types as $type)
+            @foreach ( $types as $type )
              {{-- 打?後面就可以傳參數 --}}
+             {{-- @php
+                 dd($type->type_name);
+             @endphp --}}
                 <a href="/product?type_id={{ $type->id }}" class="btn btn-primary mr-2">{{ $type->type_name }}</a>
             @endforeach
         </div>

@@ -374,7 +374,6 @@
 
             <!-- 買東西選SIZE -->
             <form action="">
-                {{-- @foreach ($topSession as $topSession) --}}
                 <div class="row py-5">
                     <div class="col py-5">
                         <div class="card flex-md-row border-0">
@@ -446,7 +445,6 @@
                         </div>
                     </div>
                 </div>
-                {{-- @endforeach --}}
             </form>
 
 
