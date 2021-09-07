@@ -406,16 +406,23 @@
                                 <div class="row">
                                     <div class="col d-flex align-items-center">
                                         <i class="mr-2">Color</i>
-                                        {{-- @foreach ($color as $item)
+                                        @foreach ($record as $item)
+                                                @php
+                                                    $colors = json_decode($item->product_color);
+                                                @endphp
                                             <button type="button" class="btn-outline-primary color mx-1" style="background-color: {{ $item }}"></button>
-                                        @endforeach --}}
+                                        @endforeach
                                         <i class="mr-2">Size</i>
                                         <div class="relative">
                                             <select
                                                 class="rounded py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pr-3 ">
-                                                {{-- @foreach ($size as $item)
+                                                @php
+                                                    $sizes = json_decode($item->product_size);
+                                                    // dd($item->product_size);
+                                                @endphp
+                                                @foreach ($sizes as $item)
                                                     <option value="{{ $item }}">{{ $item }}</option>
-                                                @endforeach --}}
+                                                @endforeach
                                             </select>
 
                                         </div>
