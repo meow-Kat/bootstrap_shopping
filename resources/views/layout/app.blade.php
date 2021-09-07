@@ -87,10 +87,10 @@
     </script>
 
     <script src="sweetalert2/dist/sweetalert2.js"></script>
-    @yield('js')
     <script>
         Swal.fire('Any fool can use computer')
     </script>
+    @yield('js')
 </body>
 
 </html>

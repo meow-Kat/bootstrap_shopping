@@ -20,10 +20,42 @@ class FrontController extends Controller
         return view('front.index', compact('record','topSession','colors','sizes'));
     }
 
+    
+
+    public function login()
+    {
+        return view('front.login');
+    }
+
+
+
+    public function shoppingCart1()
+    {
+        $cartCollection = \Cart::getContent();
+        return view('front.shopping-1', compact('cartCollection'));
+    }
+
+    public function shoppingCart2()
+    {
+        return view('front.shopping-2');
+    }
+
+    public function shoppingCart3()
+    {
+        return view('front.shopping-3');
+    }
+
+    public function shoppingCart4()
+    {
+        return view('front.shopping-4');
+    }
+
+
     public function product(Request $request)
     {
         $record = Product::with('type')->get();
         $types = ProductType::get();
+        
         if($request->type_id){
             $record = Product::where('product_type_id',$request->type_id)->get();
         }else{
@@ -32,15 +64,9 @@ class FrontController extends Controller
         return view('front.product.index', compact('record','types'));
     }
 
-
-
-    public function login()
+    public function add(Request $request)
     {
-        return view('front.login');
-    }
-    public function addItem(Request $request)
-    {
-        $product = Product::find($request->productId);
+        $product = Product::find($request->productID);
         // array format
         \Cart::add(array(
             //下面的是購物車都寫好的
@@ -49,16 +75,16 @@ class FrontController extends Controller
             'price' => $product->product_price,
             'quantity' => 1,
             // ↓ 自定義才可以放自己的東西
-            'attributes' => array(
-                'product_photo'=>$product->product_photo,
-            )
+            // 'attributes' => array(
+            //     'product_photo'=>$product->product_photo,
+            // )
         ));
         return 'success';
     }
+
     public function content()
     {
         $cartCollection = \Cart::getContent();
-        dd($cartCollection);
     }
 
     public function clear()
