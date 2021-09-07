@@ -374,15 +374,16 @@
 
             <!-- 買東西選SIZE -->
             <form action="">
+                {{-- @foreach ($topSession as $topSession) --}}
                 <div class="row py-5">
                     <div class="col py-5">
                         <div class="card flex-md-row border-0">
-                            {{-- <img src="{{ $record->product_photo }}" alt="" class="m-auto buy-size"> --}}
+                            <img src="{{ $topSession->product_photo }}" alt="" class="m-auto buy-size">
                             <div class="card-body col-lg-6 mt-1 ">
                                 <div class="row">
                                     <div class="col">
-                                        {{-- <h6 class="card-subtitle mb-2 text-muted">{{ $record->type->type_name }}</h6> --}}
-                                        {{-- <h1 class="card-title">{{ $record->product_name }}</h1> --}}
+                                        <h6 class="card-subtitle mb-2 text-muted">{{ $topSession->type->type_name }}</h6>
+                                        <h1 class="card-title">{{ $topSession->product_name }}</h1>
                                         <div class="row">
                                             <div class="col d-flex align-items-center">
                                                 <i class="fas fa-star"></i>
@@ -400,26 +401,26 @@
                                 </div>
                                 <div class="row py-4">
                                     <div class="col">
-                                        {{-- <p class="card-text">{{ $record->product_context }}</p> --}}
+                                        <p class="card-text">{{ $topSession->product_context }}</p>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col d-flex align-items-center">
                                         <i class="mr-2">Color</i>
-                                        @foreach ($record as $item)
-                                                @php
-                                                    $colors = json_decode($item->product_color);
-                                                @endphp
+                                        {{-- @php
+                                            $colors = json_decode($item->product_color);
+                                        @endphp --}}
+                                        @foreach ($colors as $item)
                                             <button type="button" class="btn-outline-primary color mx-1" style="background-color: {{ $item }}"></button>
                                         @endforeach
                                         <i class="mr-2">Size</i>
                                         <div class="relative">
                                             <select
                                                 class="rounded py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pr-3 ">
-                                                @php
+                                                {{-- @php
                                                     $sizes = json_decode($item->product_size);
                                                     // dd($item->product_size);
-                                                @endphp
+                                                @endphp --}}
                                                 @foreach ($sizes as $item)
                                                     <option value="{{ $item }}">{{ $item }}</option>
                                                 @endforeach
@@ -445,6 +446,7 @@
                         </div>
                     </div>
                 </div>
+                {{-- @endforeach --}}
             </form>
 
 

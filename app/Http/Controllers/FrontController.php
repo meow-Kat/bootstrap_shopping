@@ -11,7 +11,12 @@ class FrontController extends Controller
     public function homepage()
     {
         $record = Product::with('type')->get();
-        return view('front.index', compact('record'));
+
+        $topSession = Product::with('type')->firstwhere('top','1');
+        $colors = json_decode($topSession->product_color);
+        $sizes = json_decode($topSession->product_size);
+        // dd( $topSession->product_photo);
+        return view('front.index', compact('record','topSession','colors','sizes'));
     }
 
     public function shoppingCart1()

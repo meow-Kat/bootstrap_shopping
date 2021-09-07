@@ -58,7 +58,7 @@ class ProductController extends Controller
     }
 
     public function push(Request $request)
-    {   
+    {
         $product = Product::get();
         // $requestData = $request->all();
 
