@@ -33,14 +33,23 @@
                     <td><img src="{{ $item->product_photo }}" alt="" style="width: 300px; height: 200px;"></td>
                     <td>{{ $item->product_name }}</td>
                     <td>{{ $item->product_price }}</td>
+                    <td>@if ($item->top === 1) 是 @else 否 @endif</td>
                     <td>
-                        @foreach ($size as $sizes)
-                            {{ $sizes }},
+                        @php
+                            $sizes = json_decode($item->product_size);
+                            // dd($item->product_size);
+                        @endphp
+                        @foreach ($sizes as $size)
+                            {{ $size }},
                         @endforeach
                     </td>
                     <td>
-                        @foreach ($item->color as $color)
-                            <div class="showColor" style="background-color: {{ $color }}"></div>
+                        @php
+                            $colors = json_decode($item->product_color);
+                        @endphp
+                        @foreach ($colors as $color)
+                            <div class="showColor"
+                                style="background-color: {{ $color }}; width:5px; height:5px;"></div>
                         @endforeach
                     </td>
                     </td>

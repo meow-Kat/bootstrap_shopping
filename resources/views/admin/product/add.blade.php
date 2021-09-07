@@ -34,6 +34,7 @@
                     <label><input type="checkbox" class="mx-2" name="product_size[]" value="L">L</label>
                     <label><input type="checkbox" class="mx-2" name="product_size[]" value="XL">XL</label>
                     <label><input type="checkbox" class="mx-2" name="product_size[]" value="XXL">XXL</label> --}}
+                    
                     @foreach ($size as $key => $item)
                         <p class="mb-0 mr-2" style="line-height: 25px; display:inline-block;">{{ $item }}</p>
                         <input id="size" type="checkbox" class="form-control mr-3"
