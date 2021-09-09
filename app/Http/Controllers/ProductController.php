@@ -26,7 +26,7 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        $record = Product::with('productImg')->find($id);
+        $record = Product::with('productImgs')->find($id);
         $type = ProductType::get();
         $size = json_decode($record->product_size);
         return view('admin.product.edit', compact('record', 'type', 'size'));
