@@ -43,6 +43,16 @@ class ProductController extends Controller
             $requestData['product_photo'] = FileController::imgUpload($request->file('product_photo'), 'product');
         }
 
+        if ($request->hasFile('photo')){
+            foreach($request->file('photo') as $file){
+                $path = FileController::imgUpload($file,'product');
+                ProductImg::create([
+                    'product_id' => $record->id,
+                    'photo' => $path
+                ]);
+            }
+        }
+
         $record->update($requestData);
 
         return redirect('admin/product')->with('message', '修改成功');

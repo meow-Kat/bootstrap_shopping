@@ -5,7 +5,22 @@
 @section('h1_title', '新增產品')
 
 @section('css')
-
+<style>
+    .del-img-btn{
+        position: absolute;
+        right: 10px;
+        top: -10px;
+        width: 20px;
+        height: 20px;
+        background-color: red;
+        border-radius:50%;
+        cursor: pointer;
+        color: white;
+        text-align: center;
+        line-height: 22px;
+        font-size:16px
+    }
+</style>
 @endsection
 
 @section('content')
@@ -28,13 +43,7 @@
 
                 <div class="form-group">
                     <label class="pr-3" for="product_size">尺寸</label>
-                    {{-- <label><input type="checkbox" class="mx-2" name="product_size[]" value="XS">XS</label>
-                    <label><input type="checkbox" class="mx-2" name="product_size[]" value="S">S</label>
-                    <label><input type="checkbox" class="mx-2" name="product_size[]" value="M">M</label>
-                    <label><input type="checkbox" class="mx-2" name="product_size[]" value="L">L</label>
-                    <label><input type="checkbox" class="mx-2" name="product_size[]" value="XL">XL</label>
-                    <label><input type="checkbox" class="mx-2" name="product_size[]" value="XXL">XXL</label> --}}
-                    
+
                     @foreach ($size as $key => $item)
                         <p class="mb-0 mr-2" style="line-height: 25px; display:inline-block;">{{ $item }}</p>
                         <input id="size" type="checkbox" class="form-control mr-3"
@@ -117,5 +126,6 @@
         //     document.getElementById('newColor').appendChild(newColor)
         // });
         // }
+
     </script>
 @endsection

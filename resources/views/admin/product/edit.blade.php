@@ -5,7 +5,22 @@
 @section('h1_title', '編輯產品')
 
 @section('css')
-
+<style>
+    .del-img-btn{
+        position: absolute;
+        right: 10px;
+        top: -10px;
+        width: 20px;
+        height: 20px;
+        background-color: red;
+        border-radius:50%;
+        cursor: pointer;
+        color: white;
+        text-align: center;
+        line-height: 22px;
+        font-size:16px
+    }
+</style>
 @endsection
 
 @section('content')
@@ -84,6 +99,42 @@
                 reader.readAsDataURL(input.files[0])
             }
         }
+
+        let del = document.querySelectorAll('.del-img-btn')
+        del.forEach(e =>{
+            e.onclick = function (){
+                let yes = confirm('確定刪除嗎?')
+                if(yes){
+                    // 拿到id
+                    let id = e.getAttribute('data-id')
+                    // let id = $(e).attr('data-id')
+
+                    // 發送非同步的資料到後端
+                    let formdata = new FormData()
+                    //.append('key', 'value')
+                    formdata.append('id',id)
+                    // 有幾筆資料就要用幾次 這個是csrf_token
+                    formdata.append('_token','{{ csrf_token() }}')
+
+                    let parent_element = e.parentElement
+
+                    // fetch結構記一下很重要
+                    fetch('/admin/deleteImage', { // 走route
+                        'method': 'post',
+                        'body': formdata
+                    }).then(function (response) { // 會街道所以後端傳來的資訊包刮header cookies
+                        // 用字串方式讀出來
+                        return response.text()
+                        // 這邊的 result = succses 來自FileCollorer
+                    }).then(function (result) { // 結果 這邊只有前端有被刪除而已後端也要砍
+                        if (result == 'success') {
+                            alert('刪除成功')
+                            parent_element.remove()
+                        }
+                    })
+                }
+            }
+        })
 
     </script>
 @endsection
