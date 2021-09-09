@@ -38,21 +38,15 @@
     var addBtns = document.querySelectorAll('.addBtn')
     addBtns.forEach(function ( addBtn ) {
         addBtn.addEventListener('click',function () {
-            var productID = this.dataset.id
+            var productID = $this.dataset.id
+
             var formData = new FormData()
-            formData.append('_token', '{{ csrf_token() }}')
+            formData.append('_token', '{{csrf_token()}}')
             formData.append('productID',productID)
 
             fetch('/shopping_cart/add', {
                 'method': 'POST',
                 'body':formData
-            }).then(function (response) {
-                return response.text()
-            }).then(function (result) {
-                if (result == 'success') {
-                    alert('加入天竺手購物車車成功')
-                    // Swal.fire('Any fool can use computer')
-                }
             })
         })
     })

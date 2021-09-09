@@ -15,16 +15,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'FrontController@homepage');
 
+Route::get('/shopping-1', 'ShoppingCartController@shoppingCart1');
+Route::get('/shopping-2', 'ShoppingCartController@shoppingCart2');
+Route::get('/shopping-3', 'ShoppingCartController@shoppingCart3');
+Route::get('/shopping-4', 'ShoppingCartController@shoppingCart4');
 
 Route::prefix('shopping_cart')->group(function ()
 {
-    Route::get('/shopping-1', 'FrontController@shoppingCart1');
-    Route::get('/shopping-2', 'FrontController@shoppingCart2');
-    Route::get('/shopping-3', 'FrontController@shoppingCart3');
-    Route::get('/shopping-4', 'FrontController@shoppingCart4');
-
-    Route::post('/add', 'FrontController@add');
-    Route::get('/content', 'FrontController@content');
+    Route::post('/add', 'ShoppingCartController@add');
+    Route::get('/content', 'ShoppingCartController@content');
 });
 
 
