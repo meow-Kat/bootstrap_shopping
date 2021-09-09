@@ -75,10 +75,10 @@ class ProductController extends Controller
         // $requestData = $request->all();
 
         $requestData = $request->all();
-        // dd( json_encode($request['size']));
+        dd( $requestData );
         
-        if ($request->hasFile('product_photo')) {                                             // ↓ 多層的資料夾
-            $requestData['product_photo'] = FileController::imgUpload($request->file('product_photo'),'product');
+        if ($request->hasFile('photo')) {                                             // ↓ 多層的資料夾
+            $requestData['photo'] = FileController::imgUpload($request->file('photo'),'product');
         }
 
 
