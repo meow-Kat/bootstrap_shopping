@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\productImg;
 use App\ProductType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -28,8 +29,9 @@ class ProductController extends Controller
     {
         $record = Product::with('productImgs')->find($id);
         $type = ProductType::get();
+        $color = json_decode($record->product_color);
         $size = json_decode($record->product_size);
-        return view('admin.product.edit', compact('record', 'type', 'size'));
+        return view('admin.product.edit', compact('record', 'type', 'size', 'color'));
     }
 
     public function update(Request $request, $id)
@@ -46,7 +48,7 @@ class ProductController extends Controller
         if ($request->hasFile('photo')){
             foreach($request->file('photo') as $file){
                 $path = FileController::imgUpload($file,'product');
-                ProductImg::create([
+                productImg::create([
                     'product_id' => $record->id,
                     'photo' => $path
                 ]);
@@ -73,11 +75,11 @@ class ProductController extends Controller
         // $requestData = $request->all();
 
         $requestData = $request->all();
-        if ($request->hasFile('pic')) {                                             // ↓ 多層的資料夾
-            $requestData['pic'] = FileController::imgUpload($request->file('pic'),'product');
+        // dd( json_encode($request['size']));
+        
+        if ($request->hasFile('product_photo')) {                                             // ↓ 多層的資料夾
+            $requestData['product_photo'] = FileController::imgUpload($request->file('product_photo'),'product');
         }
-
-        $new_recode = Product::create($requestData);
 
 
         if ($request->hasFile('product_photo')) {

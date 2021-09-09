@@ -47,19 +47,21 @@
                     <label><input type="checkbox" class="mx-2" id="size" name="product_size[]" value="XL" @if( in_array('XL',$size) )  checked @endif>XL</label>
                     <label><input type="checkbox" class="mx-2" id="size" name="product_size[]" value="XXL" @if( in_array('XXL',$size) )  checked @endif>XXL</label> --}}
                     @foreach ($size as $key => $item)
-                    <p class="mb-0 mr-2" style="line-height: 25px; display:inline-block;">{{ $item }}</p>
-                    <input id="size" type="checkbox" class="form-control mr-3"
-                        style="width: 25px; height: 25px; display:inline-block;" name="size[]"
-                        value="{{ $item }}" autocomplete="size" autofocus>
-                @endforeach
+                        <p class="mb-0 mr-2" style="line-height: 25px; display:inline-block;">{{ $item }}</p>
+                        <input id="size" type="checkbox" class="form-control mr-3"
+                            style="width: 25px; height: 25px; display:inline-block;" name="size[]"
+                            value="{{ $item }}" autocomplete="size" checked>
+                    @endforeach
                 
                 </div>
 
                 <div class="form-group color-group">
                     <label class="pr-3" for="product_color">顏色</label>
-                    <input type="color" class="mx-2" id="product_color" name="product_color[]" value="{{ $record->product }}">
-                    <span class="add-color-space"></span>
-                    <button type="button" class="btn btn-sm btn-secondary">增加顏色</button>
+                    @foreach ($color as $key => $item)
+                        <input type="color" class="mx-2" id="product_color" name="product_color[]" value="{{ $item }}">
+                        <span class="add-color-space"></span>
+                        {{-- <button type="button" class="btn btn-sm btn-secondary">增加顏色</button> --}}
+                    @endforeach
                 </div>
             </div>
             <div class="col-6">
