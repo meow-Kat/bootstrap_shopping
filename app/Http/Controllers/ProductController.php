@@ -31,13 +31,13 @@ class ProductController extends Controller
         $type = ProductType::get();
         $color = json_decode($record->product_color);
         $size = json_decode($record->product_size);
-        return view('admin.product.edit', compact('record', 'type', 'size', 'color'));
+        return view('admin.product.edit', compact('record', 'type', 'size', 'color' ));
     }
 
     public function update(Request $request, $id)
     {
 
-        $record = Product::find($id);
+        $record = Product::with('photo')->find($id);
         $requestData =  $request->all();
 
         // 單張圖片編輯
@@ -45,6 +45,9 @@ class ProductController extends Controller
             $requestData['product_photo'] = FileController::imgUpload($request->file('product_photo'), 'product');
         }
 
+        $record->update($requestData);
+
+        // 多張圖片編輯
         if ($request->hasFile('photo')){
             foreach($request->file('photo') as $file){
                 $path = FileController::imgUpload($file,'product');
@@ -54,8 +57,6 @@ class ProductController extends Controller
                 ]);
             }
         }
-
-        $record->update($requestData);
 
         return redirect('admin/product')->with('message', '修改成功');
     }
@@ -71,21 +72,12 @@ class ProductController extends Controller
 
     public function push(Request $request)
     {
-        // $product = Product::get();
-        // $requestData = $request->all();
-
         $requestData = $request->all();
-        dd( $requestData );
         
-        if ($request->hasFile('photo')) {                                             // ↓ 多層的資料夾
-            $requestData['photo'] = FileController::imgUpload($request->file('photo'),'product');
-        }
-
-
         if ($request->hasFile('product_photo')) {
             $requestData['product_photo'] = FileController::imgUpload($request->file('product_photo'), 'product');
         }
-
+        
         if ($request->top === null) {
             $top = 0;
         } else {
@@ -93,8 +85,9 @@ class ProductController extends Controller
         }
         $size = json_encode($request['size']);
         $color = json_encode($request['color']);
-        // dd($color);
-        Product::create([
+
+        // 新增上面的
+        $new_recode = Product::create([
             'product_type_id' => $request->product_type_id,
             'product_name' => $request->product_name,
             'product_price' => $request->product_price,
@@ -103,6 +96,18 @@ class ProductController extends Controller
             'product_color' => $color,
             'top' => $top,
         ]);
+
+         // 多圖片要另外新增
+         if ($request->hasFile('photo')) {
+            foreach($request->file('photo') as $item){  // ↓ 多層的資料夾
+                $path = FileController::imgUpload($item,'product');
+
+                ProductImg::create([
+                    'photo' => $path,
+                    'product_id' => $new_recode->id,
+                ]);
+            }
+        }
 
         return redirect('/admin/product')->with('message', '新增成功');
     }

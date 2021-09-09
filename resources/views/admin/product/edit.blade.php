@@ -33,6 +33,21 @@
                 <input class="py-3" type="file" onchange="readURL(this)" targetID="preview_progressbarTW_img"
                     accept="image/gif, image/jpeg, image/png" name="product_photo">
 
+                    <div class="form-group row">
+                        <label for="photo" class="col-md-4 col-form-label text-md-right">其他圖片</label>
+                        {{-- 上傳的部分 --}}
+                        {{-- 用關聯拿 modol function 名字 --}}
+                        @foreach ($record->productImgs as $item)
+                            <div class="col-md-3">
+                                {{-- 點到圖片刪除按鈕時 將圖片 id 記下來 傳到後端 --}}
+                                {{--  後端根據該筆 id 找到並刪除 --}}
+                                <div data-id="{{ $item->id }}" class="del-img-btn">x</div>
+                               <img class="w-100" src="{{ $item->photo }}" alt="">
+                            </div>
+                        @endforeach
+                    </div>
+
+
                 <div class="form-group">
                     <label class="py-2" for="top" @if ($record->top == 1) checked @endif>是否置頂</label>
                     <input type="checkbox" class="mx-2" id="top" name="top">
