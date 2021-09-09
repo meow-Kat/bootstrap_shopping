@@ -26,7 +26,7 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        $record = Product::find($id);
+        $record = Product::with('productImg')->find($id);
         $type = ProductType::get();
         $size = json_decode($record->product_size);
         return view('admin.product.edit', compact('record', 'type', 'size'));
@@ -58,6 +58,7 @@ class ProductController extends Controller
         return redirect('admin/product')->with('message', '修改成功');
     }
 
+
     public function delete($id)
     {
         $old_record = Product::find($id);
@@ -70,7 +71,14 @@ class ProductController extends Controller
     {
         // $product = Product::get();
         // $requestData = $request->all();
-        
+
+        $requestData = $request->all();
+        if ($request->hasFile('pic')) {                                             // ↓ 多層的資料夾
+            $requestData['pic'] = FileController::imgUpload($request->file('pic'),'product');
+        }
+
+        $new_recode = Product::create($requestData);
+
 
         if ($request->hasFile('product_photo')) {
             $requestData['product_photo'] = FileController::imgUpload($request->file('product_photo'), 'product');
