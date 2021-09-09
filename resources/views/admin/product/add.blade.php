@@ -34,6 +34,16 @@
                     <input class="py-3" type="file" onchange="readURL(this)" targetID="preview_progressbarTW_img"
                         {{-- 接受圖片型式 --}} accept="image/*" name="product_photo">
                 </div>
+                
+                {{-- 讓使用者在編輯資料時刪除關聯圖片 --}}
+                <div class="form-group row">
+                    <label for="photo" class="col-md-4 col-form-label text-md-right">其他圖片</label>
+                    <div class="col-md-6">
+                        <input class="py-3" type="file" id="photo" accept="image/gif, image/jpeg, image/png"
+                            name="photo[]" multiple>
+                        {{-- 陣列型式 ↑     ↑ 多圖上傳要有 --}}
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <label class="py-2" for="top">是否置頂</label>

@@ -68,8 +68,9 @@ class ProductController extends Controller
 
     public function push(Request $request)
     {
-        $product = Product::get();
+        // $product = Product::get();
         // $requestData = $request->all();
+        
 
         if ($request->hasFile('product_photo')) {
             $requestData['product_photo'] = FileController::imgUpload($request->file('product_photo'), 'product');
