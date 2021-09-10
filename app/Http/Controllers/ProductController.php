@@ -118,4 +118,6 @@ class ProductController extends Controller
         $size = Product::SIZE;
         return view('admin.product.add', compact('type', 'size'));
     }
+
+
 }
