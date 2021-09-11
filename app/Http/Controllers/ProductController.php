@@ -36,9 +36,9 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
-
-        $record = Product::with('photo')->find($id);
+        $record = Product::with('productImgs')->find($id);
         $requestData =  $request->all();
+        // dd($request);
 
         // 單張圖片編輯
         if ($request->hasFile('product_photo')) {
@@ -73,11 +73,9 @@ class ProductController extends Controller
     public function push(Request $request)
     {
         $requestData = $request->all();
-        
         if ($request->hasFile('product_photo')) {
             $requestData['product_photo'] = FileController::imgUpload($request->file('product_photo'), 'product');
         }
-        
         if ($request->top === null) {
             $top = 0;
         } else {
@@ -92,6 +90,7 @@ class ProductController extends Controller
             'product_name' => $request->product_name,
             'product_price' => $request->product_price,
             'product_context' => $request->product_context,
+            'product_photo' => $requestData['product_photo'],
             'product_size' => $size,
             'product_color' => $color,
             'top' => $top,
@@ -114,6 +113,7 @@ class ProductController extends Controller
 
     public function add()
     {
+
         $type = ProductType::get();
         $size = Product::SIZE;
         return view('admin.product.add', compact('type', 'size'));

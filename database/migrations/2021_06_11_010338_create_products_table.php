@@ -15,7 +15,7 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->longText('product_photo')->comment('產品圖片')->default('https://placeholder.pics/svg/400x400');
+            $table->longText('product_photo')->comment('產品圖片');  //->default('https://placeholder.pics/svg/400x400')
             $table->char('product_name')->comment('產品名稱');
             $table->text('product_context')->comment('產品內容');
             $table->integer('product_price')->comment('價格');

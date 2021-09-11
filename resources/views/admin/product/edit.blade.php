@@ -24,7 +24,7 @@
 @endsection
 
 @section('content')
-    <form action="{{ asset('/admin/product/update') }}/{{ $record->id }}" class="py-5" method="POST">
+    <form action="{{ asset('/admin/product/update') }}/{{ $record->id }}" class="py-5" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-6">
@@ -32,7 +32,7 @@
                     src="{{ $record->product_photo }}">
                 <input class="py-3" type="file" onchange="readURL(this)" targetID="preview_progressbarTW_img"
                     accept="image/gif, image/jpeg, image/png" name="product_photo">
-
+                
                     <div class="form-group row">
                         <label for="photo" class="col-md-4 col-form-label text-md-right">其他圖片</label>
                         {{-- 上傳的部分 --}}
