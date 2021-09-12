@@ -29,7 +29,6 @@ class ShoppingCartController extends Controller
 
     public function add(Request $request)
     {
-        dd($request);
         $product = Product::find($request->productId);
         // array format
         \Cart::add(array(

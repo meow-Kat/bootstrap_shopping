@@ -10,7 +10,7 @@
     <div class="container">
         <div class="row my-3">
             <a href="/product" class="btn btn-primary mr-2">All</a>
-            @foreach ( $types as $type )
+            @foreach ($types as $type)
                 <a href="/product?type_id={{ $type->id }}" class="btn btn-primary mr-2">{{ $type->type_name }}</a>
             @endforeach
         </div>
@@ -34,21 +34,28 @@
 @endsection
 
 @section('js')
-<script>
-    var addBtns = document.querySelectorAll('.addBtn')
-    addBtns.forEach(function ( addBtn ) {
-        addBtn.addEventListener('click',function () {
-            var productID = $this.dataset.id
+    <script>
+        var addBtns = document.querySelectorAll('.addBtn')
+            console.log('123');
+        addBtns.forEach(function(addBtn) {
+            addBtn.addEventListener('click', function() {
+                var productId = this.getAttribute('data-id')
 
-            var formData = new FormData()
-            formData.append('_token', '{{csrf_token()}}')
-            formData.append('productID',productID)
+                var formData = new FormData()
+                formData.append('_token', '{{ csrf_token() }}')
+                formData.append('productId', productId)
 
-            fetch('/shopping_cart/add', {
-                'method': 'POST',
-                'body':formData
+                fetch('/shopping_cart/add', {
+                    'method': 'POST',
+                    'body': formData
+                }).then(function(response) {
+                    return response.text();
+                }).then(function(result) {
+                    if (result == 'success') {
+                        alert('加入成功')
+                    }
+                })
             })
         })
-    })
-</script>
+    </script>
 @endsection

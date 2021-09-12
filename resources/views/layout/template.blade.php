@@ -165,6 +165,8 @@
 
 @yield('calc')
 
+@yield('js')
+
 </body>
 
 </html>
