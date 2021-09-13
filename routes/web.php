@@ -27,7 +27,7 @@ Route::prefix('shopping_cart')->group(function ()
 });
 
 
-Route::post('/add_item', 'FrontController@addItem');
+// Route::post('/add_item', 'FrontController@addItem');
 // Route::post('/update_item', 'FrontController@updateItem');
 
 Route::get('/product', 'FrontController@product');

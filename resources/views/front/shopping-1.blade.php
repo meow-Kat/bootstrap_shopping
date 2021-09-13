@@ -53,8 +53,8 @@
                             <div class="col d-flex align-items-center">
                                 <div class="pic-1" style="background-image: url()"></div>
                                 <div class="text px-3">
-                                    <P>耿鬼</P>
-                                    <span class="text-color-grey">#aaaa</span>
+                                    <P>{{ $item->product_name }}</P>
+                                    <span class="text-color-grey"># {{ $item->id }}</span>
                                 </div>
                             </div>
                             <div class="col d-flex justify-content-end">

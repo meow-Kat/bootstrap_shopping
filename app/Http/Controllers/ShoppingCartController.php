@@ -9,7 +9,8 @@ class ShoppingCartController extends Controller
 {
     public function shoppingCart1()
     {
-        return view('front.shopping-1');
+        $cartCollection = \Cart::getContent();
+        return view('front.shopping-1', compact('cartCollection'));
     }
 
     public function shoppingCart2()
@@ -45,10 +46,9 @@ class ShoppingCartController extends Controller
         return 'success';
     }
 
-    public function content()
-    {
-        $cartCollection = \Cart::getContent();
-        dd($cartCollection);
-        return view('front.shopping-1', compact('cartCollection'));
-    }
+    // public function content()
+    // {
+    //     $cartCollection = \Cart::getContent();
+    //     return view('front.shopping-1', compact('cartCollection'));
+    // }
 }

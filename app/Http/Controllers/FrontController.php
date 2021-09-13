@@ -41,6 +41,7 @@ class FrontController extends Controller
     public function addItem(Request $request)
     {
         $product = Product::find($request->productId);
+        dd($product);
         // array format
         \Cart::add(array(
             //下面的是購物車都寫好的
