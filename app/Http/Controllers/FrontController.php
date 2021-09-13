@@ -38,6 +38,7 @@ class FrontController extends Controller
     {
         return view('front.login');
     }
+    
     public function addItem(Request $request)
     {
         $product = Product::find($request->productId);
@@ -56,24 +57,29 @@ class FrontController extends Controller
         ));
         return 'success';
     }
-    public function content()
-    {
-        $cartCollection = \Cart::getContent();
-        dd($cartCollection);
-        return view('front.shopping-1', compact('cartCollection'));
-    }
 
-    public function clear()
-    {
-        \Cart::clear;
-    }
-    public function update(Request $request)
-    {
-        \Cart::upadte($request->productId,array(
-            'quantity' => array(
-                'relative' => false,
-                'value' => $request->newQty
-            ),
-        ));
-    }
+    // 這邊轉移到 ShoppingCartController
+    // public function content()
+    // {
+    //     $cartCollection = \Cart::getContent();
+    //     dd($cartCollection);
+    //     return view('front.shopping-1', compact('cartCollection'));
+    // }
+
+    // public function update(Request $request)
+    // {
+    //     \Cart::upadte($request->productId,array(
+    //         'quantity' => array(
+    //             'relative' => false,
+    //             'value' => $request->newQty
+    //         ),
+    //     ));
+    // }
+
+    // 只是為了教學方便把購物車清除
+    // public function clear()
+    // {
+    //     \Cart::clear;
+    // }
+
 }
