@@ -51,9 +51,9 @@
                         @foreach ($cartCollection as $item)
                         <div class="row py-2">
                             <div class="col d-flex align-items-center">
-                                <div class="pic-1" style="background-image: url()"></div>
+                                <div class="pic-1" style="background-image: url({{asset($item->attributes->product_photo)}})"></div>
                                 <div class="text px-3">
-                                    <P>{{ $item->product_name }}</P>
+                                    <P>{{ $item->name }}</P>
                                     <span class="text-color-grey"># {{ $item->id }}</span>
                                 </div>
                             </div>
@@ -67,7 +67,7 @@
                                             onchange="change(this)">
                                         <button type="button" class="add" onclick="add(this)">+</button>
                                     </div>
-                                    <p class="my-order-price px-4" data-price="{{ $item->product_price }}">$ {{ $item->product_price }}</p>
+                                    <p class="my-order-price px-4" data-price="{{ $item->price }}">$ {{ $item->price }}</p>
                                     {{-- <p class="my-order-price px-4" data-price="25">$ 25</p> --}}
                                 </div>
 

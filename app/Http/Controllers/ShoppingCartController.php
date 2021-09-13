@@ -8,8 +8,9 @@ use Illuminate\Http\Request;
 class ShoppingCartController extends Controller
 {
     public function shoppingCart1()
-    {
+    {   // 只有這個 controller show 頁面 帶進來
         $cartCollection = \Cart::getContent();
+        // dd($cartCollection); // dd 看購物車套件給的資料
         return view('front.shopping-1', compact('cartCollection'));
     }
 
