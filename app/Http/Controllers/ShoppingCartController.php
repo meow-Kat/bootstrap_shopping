@@ -47,5 +47,8 @@ class ShoppingCartController extends Controller
 
     public function content()
     {
+        $cartCollection = \Cart::getContent();
+        dd($cartCollection);
+        return view('front.shopping-1', compact('cartCollection'));
     }
 }
