@@ -58,17 +58,16 @@
                                 </div>
                             </div>
                             <div class="col d-flex justify-content-end">
-                                <div class="my-order d-flex align-items-center">
+                                <div class="my-order d-flex align-items-center calcItem">
                                     <div class="my-order-num">
-                                        <button type="button" class="remove" onclick="remove(this)">-</button>
+                                        <button type="button" class="remove">-</button>
                                         <input id="product-1" class="count-num" type="text" min="1" value="1"
                                             onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
                                             onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}"
                                             onchange="change(this)">
-                                        <button type="button" class="add" onclick="add(this)">+</button>
+                                        <button type="button" class="add">+</button>
                                     </div>
                                     <p class="my-order-price px-4" data-price="{{ $item->price }}">$ {{ $item->price }}</p>
-                                    {{-- <p class="my-order-price px-4" data-price="25">$ 25</p> --}}
                                 </div>
 
                             </div>
@@ -76,85 +75,6 @@
 
                         <hr class="featurette-divider">
                         @endforeach
-                        {{-- <div class="row py-2">
-                            <div class="col d-flex align-items-center">
-                                <div class="pic-1"></div>
-                                <div class="text px-3">
-                                    <P>耿鬼</P>
-                                    <span class="text-color-grey">#aaaa</span>
-                                </div>
-                            </div>
-                            <div class="col d-flex justify-content-end">
-                                <div class="my-order d-flex align-items-center">
-                                    <div class="my-order-num">
-                                        <span class="remove" onclick="remove(this)">-</span>
-                                        <input id="product-1" class="count-num" type="text" min="1" value="1"
-                                            onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
-                                            onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}"
-                                            onchange="change(this)">
-                                        <span class="add" onclick="add(this)">+</span>
-                                    </div>
-                                    <p class="my-order-price px-4" data-price="65">$ 65</p>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <hr class="featurette-divider">
-
-                        <div class="row py-2">
-                            <div class="col d-flex align-items-center">
-                                <div class="pic-1"></div>
-                                <div class="text px-3">
-                                    <P>貓貓</P>
-                                    <span class="text-color-grey">#aaaa</span>
-                                </div>
-                            </div>
-                            <div class="col d-flex justify-content-end">
-                                <div class="my-order d-flex align-items-center">
-                                    <div class="my-order-num">
-                                        <span class="remove" onclick="remove(this)">-</span>
-                                        <input id="product-2" class="count-num" type="text" min="1" value="1"
-                                            oninput="add(this)"
-                                            onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
-                                            onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}"
-                                            onchange="change(this)">
-                                        <span class="add" onclick="add(this)">+</span>
-                                    </div>
-                                    <p class="my-order-price px-4" data-price="20">$ 20</p>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <hr class="featurette-divider">
-
-                        <div class="row py-2">
-                            <div class="col d-flex align-items-center">
-                                <div class="pic-1"></div>
-                                <div class="text px-3">
-                                    <P>狗勾</P>
-                                    <span class="text-color-grey">#aaaa</span>
-                                </div>
-                            </div>
-                            <div class="col d-flex justify-content-end">
-                                <div class="my-order d-flex align-items-center">
-                                    <div class="my-order-num">
-                                        <span class="remove" onclick="remove(this)">-</span>
-                                        <input id="product-3" class="count-num" type="text" min="1" value="1"
-                                            onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
-                                            onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}"
-                                            onchange="change(this)">
-                                        <span class="add" onclick="add(this)">+</span>
-                                    </div>
-                                    <p class="my-order-price px-4" data-price="33">$ 33</p>
-                                    <span class="my-order-price-base d-none">33</span>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <hr class="featurette-divider"> --}}
 
                     </div>
                 </div>
@@ -285,52 +205,59 @@
 
 
     //+ - 按鈕
-    function add(ele) {
-        let num = ele.parentNode.children[1]
-        let price = ele.parentNode.parentNode.children[1]
-        let unit = ele.parentNode.parentNode.parentNode.children[1]
-        num.value = parseInt(num.value) + 1
-        price.innerHTML = `$ ` + parseInt(num.value) * parseInt(price.dataset.price)
+    let calcItems = document.querySelectorAll('.calcItem')
+    calcItems.forEach(calcItem => {
+        let add = document.querySelector('.add')
+        let remove = document.querySelector('.remove')
+        let price = calcItem.dataset.price
+        console.log(price);
+    });
+    // function add(ele) {
+    //     let num = ele.parentNode.children[1]
+    //     let price = ele.parentNode.parentNode.children[1]
+    //     let unit = ele.parentNode.parentNode.parentNode.children[1]
+    //     num.value = parseInt(num.value) + 1
+    //     price.innerHTML = `$ ` + parseInt(num.value) * parseInt(price.dataset.price)
 
-        for (let index = 0; index < count_num.length; index++) {
-            count_num[index].addEventListener('click', update())
-        }
-    }
+    //     for (let index = 0; index < count_num.length; index++) {
+    //         count_num[index].addEventListener('click', update())
+    //     }
+    // }
 
-    function remove(ele) {
-        let num = ele.parentNode.children[1]
-        let price = ele.parentNode.parentNode.children[1]
-        num.value = parseInt(num.value) - 1
-        //最小不能小於1
-        if (num.value < 1) {
-            num.value = 1
-        } else {
-            price.innerHTML = `$ ` + parseInt(num.value) * parseInt(price.dataset.price)
-        }
-
-
-        for (let index = 0; index < count_num.length; index++) {
-            count_num[index].addEventListener('click', update())
-        }
-
-    }
-
-    function change(ele) {
-        let num = ele.parentNode.children[1]
-        let price = ele.parentNode.parentNode.children[1]
-        if (num.value > 1) {
-            price.innerHTML = `$ ` + parseInt(num.value) * parseInt(price.dataset.price)
-        } else {
-            num.value = 1
-        }
+    // function remove(ele) {
+    //     let num = ele.parentNode.children[1]
+    //     let price = ele.parentNode.parentNode.children[1]
+    //     num.value = parseInt(num.value) - 1
+    //     //最小不能小於1
+    //     if (num.value < 1) {
+    //         num.value = 1
+    //     } else {
+    //         price.innerHTML = `$ ` + parseInt(num.value) * parseInt(price.dataset.price)
+    //     }
 
 
-        for (let index = 0; index < count_num.length; index++) {
-            count_num[index].addEventListener('click', update())
-        }
+    //     for (let index = 0; index < count_num.length; index++) {
+    //         count_num[index].addEventListener('click', update())
+    //     }
 
-    }
-    update()
+    // }
+
+    // function change(ele) {
+    //     let num = ele.parentNode.children[1]
+    //     let price = ele.parentNode.parentNode.children[1]
+    //     if (num.value > 1) {
+    //         price.innerHTML = `$ ` + parseInt(num.value) * parseInt(price.dataset.price)
+    //     } else {
+    //         num.value = 1
+    //     }
+
+
+    //     for (let index = 0; index < count_num.length; index++) {
+    //         count_num[index].addEventListener('click', update())
+    //     }
+
+    // }
+    // update()
 </script>
 @endsection
 
