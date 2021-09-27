@@ -31,10 +31,9 @@ Route::prefix('shopping_cart')->group(function ()
 // Route::post('/update_item', 'FrontController@updateItem');
 
 Route::get('/product', 'FrontController@product');
-
 Route::get('/content', 'FrontController@content');
-
-Route::get('/clear', 'FrontController@clear');
+Route::get('/update', 'FrontController@update');
+// Route::get('/clear', 'FrontController@clear');
 
 
 Route::get('/login', 'FrontController@shoppingCart4');

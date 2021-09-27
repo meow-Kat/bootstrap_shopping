@@ -38,7 +38,7 @@ class FrontController extends Controller
     {
         return view('front.login');
     }
-    
+
     public function addItem(Request $request)
     {
         $product = Product::find($request->productId);
@@ -66,15 +66,16 @@ class FrontController extends Controller
     //     return view('front.shopping-1', compact('cartCollection'));
     // }
 
-    // public function update(Request $request)
-    // {
-    //     \Cart::upadte($request->productId,array(
-    //         'quantity' => array(
-    //             'relative' => false,
-    //             'value' => $request->newQty
-    //         ),
-    //     ));
-    // }
+    public function update(Request $request)
+    {
+        \Cart::upadte($request->productId,array(
+            'quantity' => array(
+                'relative' => false,
+                'value' => $request->newQty
+            ),
+        ));
+        return 'success';
+    }
 
     // 只是為了教學方便把購物車清除
     // public function clear()

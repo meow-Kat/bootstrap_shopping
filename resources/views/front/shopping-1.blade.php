@@ -60,12 +60,12 @@
                             <div class="col d-flex justify-content-end">
                                 <div class="my-order d-flex align-items-center calcItem">
                                     <div class="my-order-num">
-                                        <button type="button" class="remove">-</button>
+                                        <button type="button" class="remove" onclick="remove(this)">-</button>
                                         <input id="product-1" class="count-num" type="text" min="1" value="1"
                                             onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
                                             onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}"
                                             onchange="change(this)">
-                                        <button type="button" class="add">+</button>
+                                        <button type="button" class="add" onclick="add(this)">+</button>
                                     </div>
                                     <p class="my-order-price px-4" data-price="{{ $item->price }}">$ {{ $item->price }}</p>
                                 </div>
@@ -143,31 +143,6 @@
         change_num[index] = price_base[index].innerHTML.substring(2,price_base[index].length)
     }
 
-    function cart() {
-        //送到購物車
-        let formDate = new FormData()
-                                //    ↓---花括號----↓　才是正確的
-        formDate.append('_token', '{{ csrf_token() }}')
-        formDate.append('productId',input.getAttribute('data-id'))
-        formDate.append('newQty',newQty)
-        fetch('/update',{
-            'method':post,
-            'body': formDate
-        }).then(function (responce) {
-            return response.text()
-        })then(function (result) {
-            if (newQty < 1) {
-                input.value = 1
-            }else{
-                input.value = newQty
-            }
-            let price = qtyArea.nextElementSibling
-            price.innerHTML = '$ ' + (price.getAttribute(''))
-        })
-    }
-
-
-
     function update() {
         let sum_count = 0
         let sum_calc = 0
@@ -184,7 +159,7 @@
         for (let i = 0; i < count_num.length; i++) {
             sum_calc += parseInt(count_num[i].value) * parseInt(change_num[i])
         }
-        total_price.innerHTML = `$ ` + sum_calc
+        total_price.innerHTML = `$ ` + sum_calc.toLocaleString()
 
         //運費
         shipment_calc = 60
@@ -198,66 +173,86 @@
         total_sum_calc = sum_calc + parseInt(shipment_calc)
         console.log(total_sum_calc);
 
-        total_all.innerHTML = `$ ` + total_sum_calc
+        total_all.innerHTML = `$ ` + total_sum_calc.toLocaleString()
 
-        // cart()
     }
 
 
-    //+ - 按鈕
-    let calcItems = document.querySelectorAll('.calcItem')
-    calcItems.forEach(calcItem => {
-        let add = document.querySelector('.add')
-        let remove = document.querySelector('.remove')
-        let price = calcItem.dataset.price
-        console.log(price);
-    });
-    // function add(ele) {
-    //     let num = ele.parentNode.children[1]
-    //     let price = ele.parentNode.parentNode.children[1]
-    //     let unit = ele.parentNode.parentNode.parentNode.children[1]
-    //     num.value = parseInt(num.value) + 1
-    //     price.innerHTML = `$ ` + parseInt(num.value) * parseInt(price.dataset.price)
+    // + - 按鈕
 
-    //     for (let index = 0; index < count_num.length; index++) {
-    //         count_num[index].addEventListener('click', update())
-    //     }
-    // }
+    function add(ele) {
+        let num = ele.parentNode.children[1]
+        let price = ele.parentNode.parentNode.children[1]
+        let unit = ele.parentNode.parentNode.parentNode.children[1]
+        num.value = parseInt(num.value) + 1
+        price.innerHTML = `$ ` + parseInt(num.value) * parseInt(price.dataset.price)
 
-    // function remove(ele) {
-    //     let num = ele.parentNode.children[1]
-    //     let price = ele.parentNode.parentNode.children[1]
-    //     num.value = parseInt(num.value) - 1
-    //     //最小不能小於1
-    //     if (num.value < 1) {
-    //         num.value = 1
-    //     } else {
-    //         price.innerHTML = `$ ` + parseInt(num.value) * parseInt(price.dataset.price)
-    //     }
+        for (let index = 0; index < count_num.length; index++) {
+            count_num[index].addEventListener('click', update())
+        }
+    }
+
+    function remove(ele) {
+        let num = ele.parentNode.children[1]
+        let price = ele.parentNode.parentNode.children[1]
+        num.value = parseInt(num.value) - 1
+        //最小不能小於1
+        if (num.value < 1) {
+            num.value = 1
+        } else {
+            price.innerHTML = `$ ` + parseInt(num.value) * parseInt(price.dataset.price)
+        }
 
 
-    //     for (let index = 0; index < count_num.length; index++) {
-    //         count_num[index].addEventListener('click', update())
-    //     }
+        for (let index = 0; index < count_num.length; index++) {
+            count_num[index].addEventListener('click', update())
+        }
 
-    // }
+    }
 
-    // function change(ele) {
-    //     let num = ele.parentNode.children[1]
-    //     let price = ele.parentNode.parentNode.children[1]
-    //     if (num.value > 1) {
-    //         price.innerHTML = `$ ` + parseInt(num.value) * parseInt(price.dataset.price)
-    //     } else {
-    //         num.value = 1
-    //     }
+    function change(ele) {
+        let num = ele.parentNode.children[1]
+        let price = ele.parentNode.parentNode.children[1]
+        if (num.value > 1) {
+            price.innerHTML = `$ ` + parseInt(num.value) * parseInt(price.dataset.price)
+        } else {
+            num.value = 1
+        }
 
 
-    //     for (let index = 0; index < count_num.length; index++) {
-    //         count_num[index].addEventListener('click', update())
-    //     }
+        for (let index = 0; index < count_num.length; index++) {
+            count_num[index].addEventListener('click', update())
+        }
 
-    // }
-    // update()
+    }
+
+    function cart() {
+        //送到購物車
+        let formDate = new FormData()
+                                //    ↓---花括號----↓　才是正確的
+        formDate.append('_token', '{{ csrf_token() }}')
+        formDate.append('productId',input.getAttribute('data-id'))
+        formDate.append('newQty',newQty)
+        fetch('/update',{
+            'method':post,
+            'body': formDate
+        }).then(function (responce) {
+            return response.text()
+        }).then(function (result) {
+            // if (newQty < 1) {
+            //     input.value = 1
+            // }else{
+            //     input.value = newQty
+            // }
+            // let price = qtyArea.nextElementSibling
+            // price.innerHTML = '$ ' + (price.getAttribute(''))
+            update()
+        })
+    }
+
+    window.addEventListener('load', function(){
+        update();
+    })
 </script>
 @endsection
 
