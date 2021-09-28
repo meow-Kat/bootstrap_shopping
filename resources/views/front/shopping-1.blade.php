@@ -145,7 +145,7 @@
             change_num[index] = price_base[index].innerHTML.substring(2, price_base[index].length)
         }
 
-        function update() {
+        function update(count_num_single) {
             let sum_count = 0
             let sum_calc = 0
             let total_sum_calc
@@ -160,6 +160,7 @@
 
             }
             total_num.innerHTML = sum_count
+            console.log(sum_count);
 
             total_price.innerHTML = `$ ` + sum_calc.toLocaleString()
 
@@ -172,8 +173,19 @@
 
             //總計
             total_sum_calc = sum_calc + parseInt(shipment_calc)
-
             total_all.innerHTML = `$ ` + total_sum_calc.toLocaleString()
+
+            //送到購物車
+            var formDate = new FormData()
+            formDate.append('_token', '{{ csrf_token() }}')
+            formDate.append('productId', count_num_single.dataset.id)
+            formDate.append('newQty', sum_count)
+            fetch('/shopping_cart/update', {
+                'method': 'post',
+                'body': formDate
+            }).then(function(response) {
+                return response.text()
+            })
 
         }
 
@@ -189,7 +201,7 @@
             num.value = parseInt(num.value) + 1
             price.innerHTML = `$ ` + parseInt(num.value) * parseInt(price.dataset.price)
 
-            cart(count_num_single)
+            update(count_num_single)
         }
 
         function remove(ele) {
@@ -204,7 +216,7 @@
             } else {
                 price.innerHTML = `$ ` + parseInt(num.value) * parseInt(price.dataset.price)
             }
-            cart(count_num_single)
+            update(count_num_single)
         }
 
         function change(ele) {
@@ -217,34 +229,30 @@
             } else {
                 num.value = 1
             }
-            cart(count_num_single)
+            update(count_num_single)
         }
 
 
-        function cart(count_num_single) {
+        // function cart(count_num_single) {
 
-            //送到購物車
-            var eachDetail = 0
-            var countNum = document.querySelectorAll('.count-num')
-            countNum.forEach(function(each) {
-                eachDetail += parseInt(each.value)
-            })
-                var formDate = new FormData()
-                formDate.append('_token', '{{ csrf_token() }}')
-                formDate.append('productId', count_num_single.dataset.id)
-                formDate.append('newQty', eachDetail)
-                fetch('/shopping_cart/update', {
-                    'method': 'post',
-                    'body': formDate
-                }).then(function(response) {
-                    return response.text()
-                }).then(function(result) {
-                    update()
-                })
+        //     //送到購物車
+        //     var eachDetail = 0
+        //     var countNum = document.querySelectorAll('.count-num')
+        //     countNum.forEach(function(each) {
+        //         eachDetail += parseInt(each.value)
+        //     })
+        //     var formDate = new FormData()
+        //     formDate.append('_token', '{{ csrf_token() }}')
+        //     formDate.append('productId', count_num_single.dataset.id)
+        //     formDate.append('newQty', eachDetail)
+        //     fetch('/shopping_cart/update', {
+        //         'method': 'post',
+        //         'body': formDate
+        //     }).then(function(response) {
+        //         return response.text()
+        //     })
 
-
-
-        }
+        // }
 
         window.addEventListener('load', function() {
             update();

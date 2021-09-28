@@ -23,7 +23,6 @@ class ShoppingCartController extends Controller
                 'value' => $request->newQty
             ),
         ));
-        
         return 'success';
     }
 
