@@ -1,6 +1,6 @@
 @extends('layout.template')
 
-@section('title','Shopping - Step 2')
+@section('title', 'Shopping - Step 2')
 
 @section('css')
     <link rel="stylesheet" href="/css/shop.css">
@@ -49,14 +49,16 @@
                                     <h4 class="py-3">付款方式</h4>
                                     <div class="row">
                                         <div class="col d-flex align-items-center px-4">
-                                            <input type="radio" name="pay" id="" class="cb-size" required value="Credit">
+                                            <input type="radio" name="pay" id="" class="cb-size" required
+                                                value="Credit">
                                             <h5 class="p-2">信用卡付款</h5>
                                         </div>
                                     </div>
                                     <hr class="featurette-divider">
                                     <div class="row">
                                         <div class="col d-flex align-items-center px-4">
-                                            <input type="radio" name="pay" id="" class="cb-size" required value="ATM">
+                                            <input type="radio" name="pay" id="" class="cb-size" required
+                                                value="ATM">
                                             <h5 class="p-2">
                                                 網路 ATM</h5>
                                         </div>
@@ -64,7 +66,8 @@
                                     <hr class="featurette-divider">
                                     <div class="row">
                                         <div class="col d-flex align-items-center px-4">
-                                            <input type="radio" name="pay" id="" class="cb-size" required value="CVS">
+                                            <input type="radio" name="pay" id="" class="cb-size" required
+                                                value="CVS">
                                             <h5 class="p-2">超商代碼</h5>
                                         </div>
                                     </div>
@@ -77,14 +80,16 @@
                                     <h4 class="py-3">運送方式</h4>
                                     <div class="row">
                                         <div class="col d-flex align-items-center px-4">
-                                            <input type="radio" name="ship" id="" class="cb-size" required value="Home">
+                                            <input type="radio" name="ship" id="" class="cb-size" required
+                                                value="Home">
                                             <h5 class="p-2">黑貓宅配</h5>
                                         </div>
                                     </div>
                                     <hr class="featurette-divider">
                                     <div class="row">
                                         <div class="col d-flex align-items-center px-4">
-                                            <input type="radio" name="ship" id="" class="cb-size" required value="C2C">
+                                            <input type="radio" name="ship" id="" class="cb-size" required
+                                                value="C2C">
                                             <h5 class="p-2">
                                                 超商店到店</h5>
                                         </div>
@@ -98,21 +103,28 @@
 
                     <div class="row py-3">
                         <div class="col-3 ml-auto">
+                            @php
+                                $qty = \Cart::getTotalQuantity();
+                                $subTotal = \Cart::getSubTotal();
+                                $shippingFee = \Cart::getSubTotal() > 1000 ? 0 : 60;
+                                $total = $subTotal + $shippingFee
+                            @endphp
                             <div class="totle d-flex justify-content-between">
                                 <h5 class="color-grey">數量：</h5>
-                                <h5>3</h5>
+                                <h5>{{ $qty }}</h5>
                             </div>
                             <div class="totle d-flex justify-content-between">
+
                                 <h5 class="color-grey">小計：</h5>
-                                <h5>$3800</h5>
+                                <h5>$ {{ number_format($subTotal) }}</h5>
                             </div>
                             <div class="totle d-flex justify-content-between">
                                 <h5 class="color-grey">運費：</h5>
-                                <h5>$60</h5>
+                                <h5>$ {{ $shippingFee }}</h5>
                             </div>
                             <div class="totle d-flex justify-content-between">
                                 <h5 class="color-grey">總計：</h5>
-                                <h5>$99999</h5>
+                                <h5>$ {{ number_format($total) }}</h5>
                             </div>
                         </div>
                     </div>
@@ -134,13 +146,13 @@
 
 @section('js')
     <script>
-        document.querySelector('#next').addEventListener('click',function () {
+        document.querySelector('#next').addEventListener('click', function() {
             var pay = document.querySelector('input[name="pay"]:checked')
             var ship = document.querySelector('input[name="ship"]:checked')
-            console.log(pay,ship);
-            if (pay&&ship) {
+            console.log(pay, ship);
+            if (pay && ship) {
                 document.querySelector('#payment').submit();
-            }else{
+            } else {
                 alert('請先選付款及運送方式')
             }
         })

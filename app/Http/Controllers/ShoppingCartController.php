@@ -13,6 +13,18 @@ class ShoppingCartController extends Controller
         // dd($cartCollection); // dd 看購物車套件給的資料
         return view('front.shopping-1', compact('cartCollection'));
     }
+    public function update(Request $request)
+    {
+        // update 成自己想要的 value
+        \Cart::update($request->productId, array(
+            'quantity' => array(
+                'relative' => false,
+                // fetch 內 append 的 key => value
+                'value' => $request->sum_count
+            ),
+        ));
+        return 'success';
+    }
 
     public function shoppingCart2()
     {
