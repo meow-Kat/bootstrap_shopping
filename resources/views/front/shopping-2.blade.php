@@ -107,7 +107,7 @@
                                 $qty = \Cart::getTotalQuantity();
                                 $subTotal = \Cart::getSubTotal();
                                 $shippingFee = \Cart::getSubTotal() > 1000 ? 0 : 60;
-                                $total = $subTotal + $shippingFee
+                                $total = $subTotal + $shippingFee ;
                             @endphp
                             <div class="totle d-flex justify-content-between">
                                 <h5 class="color-grey">數量：</h5>

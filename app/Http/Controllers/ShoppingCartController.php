@@ -15,13 +15,12 @@ class ShoppingCartController extends Controller
     }
     public function update(Request $request)
     {
-        dd($request->all());
         // update 成自己想要的 value
         \Cart::update($request->productId, array(
             'quantity' => array(
                 'relative' => false,
                 // fetch 內 append 的 key => value
-                'value' => $request->sum_count
+                'value' => $request->newQty
             ),
         ));
         
