@@ -25,7 +25,7 @@ Route::prefix('shopping_cart')->group(function ()
 {
     Route::post('/add', 'ShoppingCartController@add');
     Route::get('/content', 'ShoppingCartController@content');
-    Route::post('/update_item', 'ShoppingCartController@update');
+    Route::post('/update', 'ShoppingCartController@update');
 });
 
 

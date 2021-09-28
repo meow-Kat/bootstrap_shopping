@@ -61,10 +61,10 @@
                                 <div class="my-order d-flex align-items-center calcItem">
                                     <div class="my-order-num">
                                         <button type="button" class="remove" onclick="remove(this)">-</button>
-                                        <input id="product-1" class="count-num" type="text" min="1" value="1"
+                                        <input id="product-1" class="count-num" type="text" min="1" value="1" data-id="{{ $item->id }}" 
                                             onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
                                             onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}"
-                                            onchange="change(this)">
+                                            onchange="change(this)" >
                                         <button type="button" class="add" onclick="add(this)">+</button>
                                     </div>
                                     <p class="my-order-price px-4" data-price="{{ $item->price }}">$ {{ $item->price }}</p>
@@ -132,7 +132,6 @@
     let total_all = document.querySelector('.total-all')
     let shipment = document.querySelector('.shipment')
 
-
     //宣告單價取含有$的價格
     let price_base = document.querySelectorAll('.my-order-price')
     //宣告裝處理後字串的陣列
@@ -147,17 +146,17 @@
         let sum_calc = 0
         let total_sum_calc
         let shipment_calc
-
-        //算總數
+        
         for (let i = 0; i < count_num.length; i++) {
+            // 算總數
             sum_count += parseInt(count_num[i].value)
+
+            //算小記
+            sum_calc += parseInt(count_num[i].value) * parseInt(change_num[i])
+
         }
         total_num.innerHTML = sum_count
 
-        //算小記
-        for (let i = 0; i < count_num.length; i++) {
-            sum_calc += parseInt(count_num[i].value) * parseInt(change_num[i])
-        }
         total_price.innerHTML = `$ ` + sum_calc.toLocaleString()
 
         //運費
@@ -166,11 +165,9 @@
             shipment_calc = 0
         }
         shipment.innerHTML = `$ ` +  shipment_calc
-        console.log(shipment);
 
         //總計
         total_sum_calc = sum_calc + parseInt(shipment_calc)
-        console.log(total_sum_calc);
 
         total_all.innerHTML = `$ ` + total_sum_calc.toLocaleString()
 
@@ -183,17 +180,19 @@
         let num = ele.parentNode.children[1]
         let price = ele.parentNode.parentNode.children[1]
         let unit = ele.parentNode.parentNode.parentNode.children[1]
+        let count_num_single = ele.parentNode.childNodes[3]
+
         num.value = parseInt(num.value) + 1
         price.innerHTML = `$ ` + parseInt(num.value) * parseInt(price.dataset.price)
 
-        for (let index = 0; index < count_num.length; index++) {
-            count_num[index].addEventListener('click', update())
-        }
+        cart(count_num_single)
     }
 
     function remove(ele) {
         let num = ele.parentNode.children[1]
         let price = ele.parentNode.parentNode.children[1]
+        let count_num_single = ele.parentNode.childNodes[3]
+
         num.value = parseInt(num.value) - 1
         //最小不能小於1
         if (num.value < 1) {
@@ -201,50 +200,42 @@
         } else {
             price.innerHTML = `$ ` + parseInt(num.value) * parseInt(price.dataset.price)
         }
-
-
-        for (let index = 0; index < count_num.length; index++) {
-            count_num[index].addEventListener('click', update())
-        }
-
+        cart(count_num_single)
     }
 
     function change(ele) {
         let num = ele.parentNode.children[1]
         let price = ele.parentNode.parentNode.children[1]
+        let count_num_single = ele.parentNode.childNodes[3]
+
         if (num.value > 1) {
             price.innerHTML = `$ ` + parseInt(num.value) * parseInt(price.dataset.price)
         } else {
             num.value = 1
         }
-
-
-        for (let index = 0; index < count_num.length; index++) {
-            count_num[index].addEventListener('click', update())
-        }
-
+         cart(count_num_single)
     }
 
-    function cart() {
+
+    function cart(count_num_single) {
+        
+        var eachDetail = 0
+        var countNum = document.querySelectorAll('.count-num')
+        countNum.forEach(function (each) {
+            eachDetail += parseInt(each.value)
+        })
+
         //送到購物車
-        let formDate = new FormData()
-                                //    ↓---花括號----↓　才是正確的
+        var formDate = new FormData()
         formDate.append('_token', '{{ csrf_token() }}')
-        formDate.append('productId',input.getAttribute('data-id'))
-        formDate.append('newQty',newQty)
-        fetch('/update',{
-            'method':post,
+        formDate.append('productId', count_num_single.dataset.id)
+        formDate.append('newQty',eachDetail)
+        fetch('/shopping_cart/update',{
+            'method':'post',
             'body': formDate
-        }).then(function (responce) {
+        }).then(function (response) {
             return response.text()
         }).then(function (result) {
-            // if (newQty < 1) {
-            //     input.value = 1
-            // }else{
-            //     input.value = newQty
-            // }
-            // let price = qtyArea.nextElementSibling
-            // price.innerHTML = '$ ' + (price.getAttribute(''))
             update()
         })
     }
