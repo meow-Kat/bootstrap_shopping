@@ -17,6 +17,7 @@ Route::get('/', 'FrontController@homepage');
 
 Route::get('/shopping-1', 'ShoppingCartController@shoppingCart1');
 Route::get('/shopping-2', 'ShoppingCartController@shoppingCart2');
+Route::post('/shopping-2/check', 'ShoppingCartController@paymentCheck');
 Route::get('/shopping-3', 'ShoppingCartController@shoppingCart3');
 Route::get('/shopping-4', 'ShoppingCartController@shoppingCart4');
 

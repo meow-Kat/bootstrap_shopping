@@ -19,6 +19,11 @@ class ShoppingCartController extends Controller
         return view('front.shopping-2');
     }
 
+    public function paymentCheck(Request $request)
+    {
+        dd($request->all());
+    }
+
     public function shoppingCart3()
     {
         return view('front.shopping-3');
@@ -52,4 +57,6 @@ class ShoppingCartController extends Controller
     //     $cartCollection = \Cart::getContent();
     //     return view('front.shopping-1', compact('cartCollection'));
     // }
+
+
 }

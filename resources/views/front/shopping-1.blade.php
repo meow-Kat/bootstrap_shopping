@@ -112,8 +112,7 @@
                                 <p class="card-text my-back px-3">返回購物</p>
                             </a>
                         </span>
-                        <a href="{{ asset('/shopping-2') }}"><button type="button"
-                                class="btn btn-primary btn-lg my-button">下一步</button></a>
+                        <a href="{{ asset('/shopping-2') }}" class="btn btn-primary btn-lg my-button">下一步</a>
                     </div>
                 </div>
             </div>
