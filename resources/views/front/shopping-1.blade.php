@@ -160,8 +160,6 @@
 
             }
             total_num.innerHTML = sum_count
-            console.log(sum_count);
-
             total_price.innerHTML = `$ ` + sum_calc.toLocaleString()
 
             //運費
