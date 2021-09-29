@@ -269,11 +269,6 @@
         var shipping_free = 1000;
         var shippingPrice = 60;
 
-        // function qqq() {
-        //  return 123;
-        // }
-
-
         // 顯示計算後所有項目更新
         function updateData() {
             // 數量、小計歸零
@@ -367,29 +362,32 @@
             updateData();
         })
        }
-    //    var delBtns = document.querySelectorAll('.del-btn');
-    //    delBtns.forEach(function (delBtn) {
-    //        delBtn.addEventListener('click', function () {
-    //             var productId = this.getAttribute('data-id');
-    //             var formData = new FormData();
-    //             formData.append('_token', '{{ csrf_token() }}');
-    //             formData.append('productId', productId);
-    //             var delElement = this;
-    //             var delHr = document.querySelectorAll('.hr');
-    //             console.log(delHr);
-    //             fetch('/cart/delete',{
-    //                 'method': 'POST',
-    //                 'body':formData
-    //             }).then(function (response) {
-    //                 return response.text();
-    //             }).then(function (result) {
-    //                 if(result == 'success'){
-    //                     delElement.parentElement.parentElement.parentElement.remove();
-    //                     delHr.remove();
-    //                     updateData();
-    //                 }
-    //             })
-    //        })
-    //    })
+
+
+
+       var delBtns = document.querySelectorAll('.del-btn');
+       delBtns.forEach(function (delBtn) {
+           delBtn.addEventListener('click', function () {
+                var productId = this.getAttribute('data-id');
+                var formData = new FormData();
+                formData.append('_token', '{{ csrf_token() }}');
+                formData.append('productId', productId);
+                var delElement = this;
+                var delHr = document.querySelectorAll('.hr');
+                console.log(delHr);
+                fetch('/cart/delete',{
+                    'method': 'POST',
+                    'body':formData
+                }).then(function (response) {
+                    return response.text();
+                }).then(function (result) {
+                    if(result == 'success'){
+                        delElement.parentElement.parentElement.parentElement.remove();
+                        delHr.remove();
+                        updateData();
+                    }
+                })
+           })
+       })
     </script>
 @endsection

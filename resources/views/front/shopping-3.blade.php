@@ -77,7 +77,7 @@
                                                         placeholder="郵遞區號">
                                                 </div>
                                             </div>
-                                            <input type="number" class="form-control pr-1" id="shopping-address"
+                                            <input type="text" class="form-control pr-1" id="shopping-address"
                                                 placeholder="鄉鎮路巷樓號" name="address">
                                         </div>
                                     </form>
