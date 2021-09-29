@@ -31,7 +31,7 @@ class CreateOrdersTable extends Migration
             $table->integer('shipping_fee');
             $table->integer('shipping_status_id');
             $table->integer('order_status_id');
-            $table->longText('order_status_id')->nullable();
+            $table->longText('remark')->nullable();
             $table->timestamps();
             
         });

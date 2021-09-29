@@ -27,7 +27,6 @@ Route::prefix('shopping_cart')->group(function ()
     Route::get('/content', 'ShoppingCartController@content');
     Route::post('/update', 'ShoppingCartController@update');
     Route::get('/clear', 'ShoppingCartController@clear');
-    
 });
 
 
