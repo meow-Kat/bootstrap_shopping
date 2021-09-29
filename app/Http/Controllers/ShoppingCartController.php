@@ -70,5 +70,12 @@ class ShoppingCartController extends Controller
     //     return view('front.shopping-1', compact('cartCollection'));
     // }
 
+    //  只是為了教學方便把購物車清除
+    public function clear()
+    {
+        \Cart::clear();
+        return 'success';
+    }
+
 
 }

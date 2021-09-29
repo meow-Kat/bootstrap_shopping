@@ -26,6 +26,8 @@ Route::prefix('shopping_cart')->group(function ()
     Route::post('/add', 'ShoppingCartController@add');
     Route::get('/content', 'ShoppingCartController@content');
     Route::post('/update', 'ShoppingCartController@update');
+    Route::get('/clear', 'ShoppingCartController@clear');
+
 });
 
 
@@ -35,7 +37,6 @@ Route::prefix('shopping_cart')->group(function ()
 Route::get('/product', 'FrontController@product');
 Route::get('/content', 'FrontController@content');
 Route::get('/update', 'FrontController@update');
-// Route::get('/clear', 'FrontController@clear');
 
 
 Route::get('/login', 'FrontController@shoppingCart4');

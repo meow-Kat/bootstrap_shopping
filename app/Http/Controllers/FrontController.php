@@ -77,10 +77,6 @@ class FrontController extends Controller
         return 'success';
     }
 
-    // 只是為了教學方便把購物車清除
-    // public function clear()
-    // {
-    //     \Cart::clear;
-    // }
+
 
 }
