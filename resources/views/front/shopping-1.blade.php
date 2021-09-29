@@ -88,19 +88,19 @@
                         <div class="col-5 col-md-3 ml-auto">
                             <div class="totle d-flex justify-content-between">
                                 <h5 class="color-grey ">數量：</h5>
-                                <h5 class="total-num">3</h5>
+                                <h5 class="total-num"></h5>
                             </div>
                             <div class="totle d-flex justify-content-between">
                                 <h5 class="color-grey">小計：</h5>
-                                <h5 class="total-price">$ 118</h5>
+                                <h5 class="total-price"></h5>
                             </div>
                             <div class="totle d-flex justify-content-between">
                                 <h5 class="color-grey ">運費：</h5>
-                                <h5 class="shipment">$ 60</h5>
+                                <h5 class="shipment"></h5>
                             </div>
                             <div class="totle d-flex justify-content-between">
                                 <h5 class="color-grey">總計：</h5>
-                                <h5 class="total-all">$ 178</h5>
+                                <h5 class="total-all"></h5>
                             </div>
                         </div>
                     </div>

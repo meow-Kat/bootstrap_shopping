@@ -177,6 +177,8 @@ return [
 
         // shipping
         Darryldecode\Cart\CartServiceProvider::class,
+        // krlove
+        Krlove\EloquentModelGenerator\Provider\GeneratorServiceProvider::class,
 
     ],
 
