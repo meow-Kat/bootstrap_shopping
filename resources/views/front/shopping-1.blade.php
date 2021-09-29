@@ -173,23 +173,12 @@
             total_sum_calc = sum_calc + parseInt(shipment_calc)
             total_all.innerHTML = `$ ` + total_sum_calc.toLocaleString()
 
-            //送到購物車
-            var formDate = new FormData()
-            formDate.append('_token', '{{ csrf_token() }}')
-            formDate.append('productId', count_num_single.dataset.id)
-            formDate.append('newQty', sum_count)
-            fetch('/shopping_cart/update', {
-                'method': 'post',
-                'body': formDate
-            }).then(function(response) {
-                return response.text()
-            })
+            cart(count_num_single)
 
         }
 
 
         // + - 按鈕
-
         function add(ele) {
             let num = ele.parentNode.children[1]
             let price = ele.parentNode.parentNode.children[1]
@@ -231,26 +220,26 @@
         }
 
 
-        // function cart(count_num_single) {
+        function cart(count_num_single) {
 
-        //     //送到購物車
-        //     var eachDetail = 0
-        //     var countNum = document.querySelectorAll('.count-num')
-        //     countNum.forEach(function(each) {
-        //         eachDetail += parseInt(each.value)
-        //     })
-        //     var formDate = new FormData()
-        //     formDate.append('_token', '{{ csrf_token() }}')
-        //     formDate.append('productId', count_num_single.dataset.id)
-        //     formDate.append('newQty', eachDetail)
-        //     fetch('/shopping_cart/update', {
-        //         'method': 'post',
-        //         'body': formDate
-        //     }).then(function(response) {
-        //         return response.text()
-        //     })
+            //送到購物車
+            var eachDetail = 0
+            var countNum = document.querySelectorAll('.count-num')
+            countNum.forEach(function(each) {
+                eachDetail += parseInt(each.value)
+            })
+            var formDate = new FormData()
+            formDate.append('_token', '{{ csrf_token() }}')
+            formDate.append('productId', count_num_single.dataset.id)
+            formDate.append('newQty', eachDetail)
+            fetch('/shopping_cart/update', {
+                'method': 'post',
+                'body': formDate
+            }).then(function(response) {
+                return response.text()
+            })
 
-        // }
+        }
 
         window.addEventListener('load', function() {
             update();

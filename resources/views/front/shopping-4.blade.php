@@ -154,19 +154,20 @@
                         <div class="col-3 ml-auto">
                             <div class="totle d-flex justify-content-between">
                                 <h5 class="color-grey">數量：</h5>
-                                <h5>3</h5>
+                                <h5>{{ $qty }}</h5>
                             </div>
                             <div class="totle d-flex justify-content-between">
+
                                 <h5 class="color-grey">小計：</h5>
-                                <h5>$3800</h5>
+                                <h5>$ {{ number_format($subTotal) }}</h5>
                             </div>
                             <div class="totle d-flex justify-content-between">
                                 <h5 class="color-grey">運費：</h5>
-                                <h5>$60</h5>
+                                <h5>$ {{ $shippingFee }}</h5>
                             </div>
                             <div class="totle d-flex justify-content-between">
                                 <h5 class="color-grey">總計：</h5>
-                                <h5>$99999</h5>
+                                <h5>$ {{ number_format($total) }}</h5>
                             </div>
                         </div>
                     </div>

@@ -24,22 +24,38 @@ class ShoppingCartController extends Controller
                 'value' => $request->newQty
             ),
         ));
+        // dump(\Cart::getContent());
         return 'success';
     }
 
     public function shoppingCart2()
     {
-        return view('front.shopping-2');
+        $qty = \Cart::getTotalQuantity();
+        $subTotal = \Cart::getSubTotal();
+        $shippingFee = \Cart::getSubTotal() > 1000 ? 0 : 60;
+        $total = $subTotal + $shippingFee;
+        return view('front.shopping-2', compact('qty' , 'subTotal', 'shippingFee' , 'total'));
     }
 
     public function paymentCheck(Request $request)
     {
-        Session::put('pay',$request->pay);
-        Session::put('ship',$request->ship);
-        return view('front.shopping-3');;
+        Session::put('pay', $request->pay);
+        Session::put('ship', $request->ship);
+        return redirect('/shopping-3');
     }
 
-
+    public function shoppingCart3()
+    {
+        if ( Session::has('pay') && Session::has('ship')) {
+            $qty = \Cart::getTotalQuantity();
+            $subTotal = \Cart::getSubTotal();
+            $shippingFee = \Cart::getSubTotal() > 1000 ? 0 : 60;
+            $total = $subTotal + $shippingFee;
+            return view('front.shopping-3' , compact( 'qty' , 'subTotal', 'shippingFee' , 'total'));
+        }else{
+            return redirect('/shopping-2');
+        }
+    }
 
     public function shoppingCart4()
     {
@@ -58,7 +74,7 @@ class ShoppingCartController extends Controller
             'quantity' => 1,
             // ↓ 自定義才可以放自己的東西
             'attributes' => array(
-                'product_photo'=>$product->product_photo,
+                'product_photo' => $product->product_photo,
             )
         ));
         return 'success';
@@ -76,6 +92,4 @@ class ShoppingCartController extends Controller
         \Cart::clear();
         return 'success';
     }
-
-
 }
