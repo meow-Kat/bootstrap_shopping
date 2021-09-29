@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ShoppingCartController extends Controller
 {
@@ -33,13 +34,12 @@ class ShoppingCartController extends Controller
 
     public function paymentCheck(Request $request)
     {
-        dd($request->all());
+        Session::put('pay',$request->pay);
+        Session::put('ship',$request->ship);
+        return view('front.shopping-3');;
     }
 
-    public function shoppingCart3()
-    {
-        return view('front.shopping-3');
-    }
+
 
     public function shoppingCart4()
     {
