@@ -37,9 +37,7 @@
                             </div>
                         </div>
                     </div>
-
                     <hr class="featurette-divider">
-
                     <!-- 訂單 -->
                     <div class="row">
                         <div class="col">
@@ -49,8 +47,9 @@
                                 </div>
                             </div>
                             @foreach ($cartCollection as $item)
-                                <div class="row py-2 product">
+                            <div class="row py-2 product">
                                     <div class="col d-flex align-items-center ">
+                                        <button class="del-btn mr-2" data-id="{{ $item->id }}">x</button>
                                         <div class="pic-1"
                                             style="background-image: url({{ asset($item->attributes->product_photo) }})">
                                         </div>
@@ -78,10 +77,8 @@
 
                                     </div>
                                 </div>
-
                                 <hr class="featurette-divider">
                             @endforeach
-
                         </div>
                     </div>
                     <!-- 計算 -->
@@ -109,7 +106,6 @@
                     <hr class="featurette-divider">
 
                     <!-- 上/下一步 -->
-
                     <div class="row">
                         <div class="col d-flex justify-content-between align-items-center">
                             <span class="d-flex align-items-center">
@@ -255,17 +251,15 @@
                 formData.append('_token', '{{ csrf_token() }}');
                 formData.append('productId', productId);
                 var delElement = this;
-                var delHr = document.querySelectorAll('.hr');
-                console.log(delHr);
-                fetch('/cart/delete',{
+                fetch('/shopping_cart/delete',{
                     'method': 'POST',
                     'body':formData
                 }).then(function (response) {
                     return response.text();
                 }).then(function (result) {
                     if(result == 'success'){
-                        delElement.parentElement.parentElement.parentElement.remove();
-                        delHr.remove();
+                        delElement.parentElement.parentElement.remove();
+                        // delElement.parentElement.parentElement.nextSibling.nextSibling.remove();
                         updateData();
                     }
                 })

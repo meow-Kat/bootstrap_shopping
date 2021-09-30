@@ -7,6 +7,11 @@
 @section('tile', '產品列')
 
 @section('main')
+    @if (Session::has('message'))
+        <div class="alert alert-primary" role="alert">
+            {{ Session::get('message') }}
+        </div>
+    @endif
     <div class="container">
         <div class="row my-3">
             <a href="/product" class="btn btn-primary mr-2">All</a>

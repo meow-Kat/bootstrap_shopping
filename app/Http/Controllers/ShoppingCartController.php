@@ -117,7 +117,11 @@ class ShoppingCartController extends Controller
 
     public function shoppingCart4()
     {
-        return view('front.shopping-4', $this->shoppingCalc());
+        if(Session::has('order')){
+            return view('front.shopping-4');
+        }else{
+            return redirect('/');
+        }
     }
 
     public function add(Request $request)
@@ -135,6 +139,12 @@ class ShoppingCartController extends Controller
                 'product_photo' => $product->product_photo,
             )
         ));
+        return 'success';
+    }
+
+    public function delete(Request $request)
+    {   
+        \Cart::remove($request->productId);
         return 'success';
     }
 
