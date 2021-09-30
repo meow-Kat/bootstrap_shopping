@@ -258,8 +258,8 @@
                     return response.text();
                 }).then(function (result) {
                     if(result == 'success'){
+                        delElement.parentElement.parentElement.parentElement.children[2].remove();
                         delElement.parentElement.parentElement.remove();
-                        // delElement.parentElement.parentElement.nextSibling.nextSibling.remove();
                         updateData();
                     }
                 })
