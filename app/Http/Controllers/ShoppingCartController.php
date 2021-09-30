@@ -57,6 +57,12 @@ class ShoppingCartController extends Controller
         }
     }
 
+    public function shipmentCheck(Request $request)
+    {
+        dd($request->all());
+        return redirect('/shopping-3');
+    }
+
     public function shoppingCart4()
     {
         return view('front.shopping-4');
