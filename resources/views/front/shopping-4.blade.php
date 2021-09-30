@@ -7,6 +7,9 @@
 @endsection
 
 @section('main')
+    @php
+        $order = Session::get('order');
+    @endphp
     <!-- Main -->
     <main class="my-main">
         <div class="container py-5">
@@ -49,72 +52,33 @@
                                     <h4>訂單明細</h4>
                                 </div>
                             </div>
+                            @php
+                                $qty = 0;
+                            @endphp
+                            @foreach ($order->details as $detail)
+                                @php
+                                    $product = json_decode($detail->old);
+                                    $qty += $detail->qty;
+                                @endphp
                             <div class="row py-2">
                                 <div class="col d-flex align-items-center">
-                                    <div class="pic-1"></div>
+                                    <img class="pic-1" src="{{ $product->product_photo }}" >
                                     <div class="text px-3">
-                                        <P>耿鬼</P>
-                                        <span class="text-color-grey">#aaaa</span>
+                                        <P>{{ $product->product_name }}</P>
+                                        <span class="text-color-grey"># {{ $product->product_context }}</span>
                                     </div>
                                 </div>
                                 <div class="col d-flex justify-content-end">
                                     <div class="my-order d-flex align-items-center">
                                         <div class="my-order-num">
-                                            <span>x</span>
-                                            <span>1</span>
+                                            <span>x {{ $detail->qty }}</span>
                                         </div>
-                                        <p class="my-order-price px-4">$999</p>
+                                        <p class="my-order-price px-4">$ {{ $product->product_price }}</p>
                                     </div>
-
                                 </div>
                             </div>
-
                             <hr class="featurette-divider">
-
-                            <div class="row py-2">
-                                <div class="col d-flex align-items-center">
-                                    <div class="pic-1"></div>
-                                    <div class="text px-3">
-                                        <P>耿鬼</P>
-                                        <span class="text-color-grey">#aaaa</span>
-                                    </div>
-                                </div>
-                                <div class="col d-flex justify-content-end">
-                                    <div class="my-order d-flex align-items-center">
-                                        <div class="my-order-num">
-                                            <span>x</span>
-                                            <span>1</span>
-                                        </div>
-                                        <p class="my-order-price px-4">$999</p>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <hr class="featurette-divider">
-
-                            <div class="row py-2">
-                                <div class="col d-flex align-items-center">
-                                    <div class="pic-1"></div>
-                                    <div class="text px-3">
-                                        <P>耿鬼</P>
-                                        <span class="text-color-grey">#aaaa</span>
-                                    </div>
-                                </div>
-                                <div class="col d-flex justify-content-end">
-                                    <div class="my-order d-flex align-items-center">
-                                        <div class="my-order-num">
-                                            <span>x</span>
-                                            <span>1</span>
-                                        </div>
-                                        <p class="my-order-price px-4">$999</p>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <hr class="featurette-divider">
-
+                            @endforeach
                         </div>
                     </div>
 
@@ -129,19 +93,20 @@
                                 <div class="col">
                                     <div class="d-flex py-3">
                                         <h5 class="information">姓名</h5>
-                                        <h5>貓貓</h5>
+                                        <h5>{{$order->name}}</h5>
                                     </div>
                                     <div class="d-flex py-3">
                                         <h5 class="information">電話</h5>
-                                        <h5>0912345678</h5>
+                                        <h5>{{$order->phone}}</h5>
                                     </div>
                                     <div class="d-flex py-3">
                                         <h5 class="information">Email</h5>
-                                        <h5>abc@gmail.com</h5>
+                                        <h5>{{$order->email}}</h5>
                                     </div>
                                     <div class="d-flex py-3">
                                         <h5 class="information">地址</h5>
-                                        <h5>409 台中市小鎮村英雄路1號</h5>
+                                        {{-- 用點串字串 --}}
+                                        <h5>{{$order->zipcode}} {{$order->country.$order->district.$order->address}}</h5>
                                     </div>
                                 </div>
                             </div>
@@ -159,21 +124,22 @@
                             <div class="totle d-flex justify-content-between">
 
                                 <h5 class="color-grey">小計：</h5>
-                                <h5>$ {{ number_format($subTotal) }}</h5>
+                                <h5>$ {{ number_format($order->price) }}</h5>
                             </div>
                             <div class="totle d-flex justify-content-between">
                                 <h5 class="color-grey">運費：</h5>
-                                <h5>$ {{ $shippingFee }}</h5>
+                                <h5>$ {{ $order->shippingFee }}</h5>
                             </div>
                             <div class="totle d-flex justify-content-between">
                                 <h5 class="color-grey">總計：</h5>
-                                <h5>$ {{ number_format($total) }}</h5>
+                                <h5>$ {{ number_format($order->price+$order->shippingFee) }}</h5>
                             </div>
                         </div>
                     </div>
 
                     <hr class="featurette-divider">
-
+                    @php
+                    @endphp
                     <!-- 上/下一步 -->
 
                     <div class="row">

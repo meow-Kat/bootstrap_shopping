@@ -46,7 +46,7 @@
                             <div class="row">
                                 <div class="col py-3">
                                     <h4 class="py-3">寄送資料</h4>
-                                    <form id="addressDetail" class="p-2" action="" method="POST">
+                                    <form id="addressDetail" class="p-2" action="{{ asset('/shopping-3/check') }}" method="POST">
                                         @csrf
                                         <div class="form-group">
                                             <label for="shopping-name">姓名</label>
@@ -74,7 +74,7 @@
                                                 </div>
                                                 <div class="col-4">
                                                     <input class="zipcode form-control" type="text" size="3" readonly
-                                                        placeholder="郵遞區號">
+                                                        placeholder="郵遞區號" name="zipcode">
                                                 </div>
                                             </div>
                                             <input type="text" class="form-control pr-1" id="shopping-address"
@@ -127,11 +127,6 @@
 @endsection
 
 @section('js')
-    <script>
-        document.querySelector('#next').addEventListener('click', function() {
-            document.querySelector('#addressDetail').submit();
-        }
-    </script>
     <script src="{{ asset('js/tw-city-selector.js') }}"></script>
     <script>
         new TwCitySelector({
@@ -140,5 +135,10 @@
             elDistrict: '.district', // 在 el 裡查找 element
             elZipcode: '.zipcode' // 在 el 裡查找 element
         });
+    </script>
+    <script>
+        document.querySelector('#next').addEventListener('click', function() {
+            document.querySelector('#addressDetail').submit()
+        })
     </script>
 @endsection

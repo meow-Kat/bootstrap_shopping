@@ -33,12 +33,12 @@ class CreateOrdersTable extends Migration
             $table->integer('order_status_id');
             $table->longText('remark')->nullable();
             $table->timestamps();
-            
+
         });
     }
 
     /**
-     * Reverse the migrations.
+     *             Reverse the migrations.
      *
      * @return void
      */
