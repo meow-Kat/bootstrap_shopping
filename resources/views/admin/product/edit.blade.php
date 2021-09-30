@@ -49,24 +49,25 @@
 
 
                 <div class="form-group">
-                    <label class="py-2" for="top" @if ($record->top == 1) checked @endif>是否置頂</label>
-                    <input type="checkbox" class="mx-2" id="top" name="top">
+                    <label class="py-2" for="top" >是否置頂</label>
+                    <input type="checkbox" class="mx-2" id="top" name="top" @if ( $record->top == 1 ) checked @endif>
                 </div>
 
                 <div class="form-group">
-                    <label class="pr-3" for="product_size">尺寸</label>
-                    {{-- <label><input type="checkbox" class="mx-2" id="size" name="product_size[]" value="XS" @if( in_array('XS',$size) )  checked @endif>XS</label>
-                    <label><input type="checkbox" class="mx-2" id="size" name="product_size[]" value="S" @if( in_array('S',$size) )  checked @endif>S</label>
-                    <label><input type="checkbox" class="mx-2" id="size" name="product_size[]" value="M" @if( in_array('M',$size) )  checked @endif>M</label>
-                    <label><input type="checkbox" class="mx-2" id="size" name="product_size[]" value="L" @if( in_array('L',$size) )  checked @endif>L</label>
-                    <label><input type="checkbox" class="mx-2" id="size" name="product_size[]" value="XL" @if( in_array('XL',$size) )  checked @endif>XL</label>
-                    <label><input type="checkbox" class="mx-2" id="size" name="product_size[]" value="XXL" @if( in_array('XXL',$size) )  checked @endif>XXL</label> --}}
-                    @foreach ($size as $key => $item)
+                    {{-- @foreach ($size as $key => $item)
                         <p class="mb-0 mr-2" style="line-height: 25px; display:inline-block;">{{ $item }}</p>
                         <input id="size" type="checkbox" class="form-control mr-3"
                             style="width: 25px; height: 25px; display:inline-block;" name="size[]"
                             value="{{ $item }}" autocomplete="size" checked>
-                    @endforeach
+                    @endforeach --}}
+                    <label class="pr-3" for="product_size">尺寸</label>
+                    <label><input type="checkbox" class="mx-2" id="size" name="product_size[]" value="XS" @if( in_array('XS',$size) )  checked @endif>XS</label>
+                    <label><input type="checkbox" class="mx-2" id="size" name="product_size[]" value="S" @if( in_array('S',$size) )  checked @endif>S</label>
+                    <label><input type="checkbox" class="mx-2" id="size" name="product_size[]" value="M" @if( in_array('M',$size) )  checked @endif>M</label>
+                    <label><input type="checkbox" class="mx-2" id="size" name="product_size[]" value="L" @if( in_array('L',$size) )  checked @endif>L</label>
+                    <label><input type="checkbox" class="mx-2" id="size" name="product_size[]" value="XL" @if( in_array('XL',$size) )  checked @endif>XL</label>
+                    <label><input type="checkbox" class="mx-2" id="size" name="product_size[]" value="XXL" @if( in_array('XXL',$size) )  checked @endif>XXL</label>
+                    
                 
                 </div>
 

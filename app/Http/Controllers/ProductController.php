@@ -27,6 +27,7 @@ class ProductController extends Controller
 
     public function edit($id)
     {
+        // dd(Product::find($id));
         $record = Product::with('productImgs')->find($id);
         $type = ProductType::get();
         $color = json_decode($record->product_color);
