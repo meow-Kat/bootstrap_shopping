@@ -44,26 +44,27 @@ Route::get('/update', 'FrontController@update');
 
 Route::get('/login', 'FrontController@shoppingCart4');
 
-
-Route::prefix('admin')->group(function () {
-    Route::get('/', 'ProductController@admin');
-    // 產品
-    Route::prefix('product')->group(function () {
-        Route::get('/', 'ProductController@product');
-        Route::get('/add', 'ProductController@add');
-        Route::post('/push', 'ProductController@push');
-        Route::get('/edit/{id}', 'ProductController@edit');
-        Route::post('/update/{id}', 'ProductController@update');
-        Route::delete('/delete/{id}', 'ProductController@delete');
-        Route::post('/deleteImg', 'FileController@deleteImg');
-        // 產品種類
-        Route::prefix('type')->group(function () {
-            Route::get('/', 'ProductTypeController@type');
-            Route::get('/add', 'ProductTypeController@add');
-            Route::post('/push', 'ProductTypeController@push');
-            Route::get('/edit/{id}', 'ProductTypeController@edit');
-            Route::post('/update/{id}', 'ProductTypeController@update');
-            Route::delete('/delete/{id}', 'ProductTypeController@delete');
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::prefix('admin')->group(function () {
+        Route::get('/', 'ProductController@admin');
+        // 產品
+        Route::prefix('product')->group(function () {
+            Route::get('/', 'ProductController@product');
+            Route::get('/add', 'ProductController@add');
+            Route::post('/push', 'ProductController@push');
+            Route::get('/edit/{id}', 'ProductController@edit');
+            Route::post('/update/{id}', 'ProductController@update');
+            Route::delete('/delete/{id}', 'ProductController@delete');
+            Route::post('/deleteImg', 'FileController@deleteImg');
+            // 產品種類
+            Route::prefix('type')->group(function () {
+                Route::get('/', 'ProductTypeController@type');
+                Route::get('/add', 'ProductTypeController@add');
+                Route::post('/push', 'ProductTypeController@push');
+                Route::get('/edit/{id}', 'ProductTypeController@edit');
+                Route::post('/update/{id}', 'ProductTypeController@update');
+                Route::delete('/delete/{id}', 'ProductTypeController@delete');
+            });
         });
     });
 });

@@ -1,73 +1,101 @@
-@extends('layouts.app')
+@extends('layout.template')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+@section('title', 'login')
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+@section('css')
+    <link rel="stylesheet" href="./css/login.css">
+    <style>
+        nav{
+            display: none !important;
+        }
+        footer{
+            display: none;
+        }
+    </style>
+@endsection
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+@section('main')
+    <div class="row no-gutters">
+        <div class="col">
+            <div class="back-img position-absolute"></div>
+            <div class="mask position-relative">
+                <div class="row no-gutters">
+                        <div class="col-6 left d-none d-lg-flex justify-content-center flex-column px-5 ">
+                            <h1>Keep it special</h1>
+                            <p>Capture your personal memory in unique way, anywhere.</p>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <div class="left-bottom text-center d-lg-block">
+                                <i class="fab fa-twitter font-icon"></i>
+                                <i class="fab fa-facebook-f mx-4 font-icon"></i>
+                                <i class="fab fa-instagram font-icon"></i>
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                    <div class="col-12 col-lg-6">
+                        <div class="back-spec d-lg-block"></div>
+                        <div class="right">
+                            <div class="log-in">
+                                <div class="logo">
+                                    <div class="log-pic"></div>
+                                    <h5 class="log-text text-center">數位方塊</h5>
+                                </div>
+                                <div class="links text-center my-4">
+                                    <i class="fab fa-facebook-f link"></i>
+                                    <i class="fab fa-google-plus-g link mx-2"></i>
+                                    <i class="fab fa-linkedin-in link"></i>
+                                </div>
+                                <div class="text-center"><span>or use email your account</span></div>
+                                <form class="py-3" method="POST" action="{{ route('login') }}" id="login">
+                                    @csrf
+                                    <div class="form-group">
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" aria-describedby="emailHelp" placeholder="請輸入 Email 帳號" value="{{ old('email') }}" required autofocus>
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" placeholder="請輸入密碼" required name="password">
+
+                                        @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <a class="text-right" href="{{ route('password.request') }}"><span>{{ __('Forgot Your Password?') }}</span></a>
+                                </form>
+                                <button type="submit" class="btn btn-primary btn-lg w-100 my-botton">{{ __('Login') }}</button>
+
+                                <div class="left-bottom-1 text-center my-5 d-lg-none">
+                                    <i class="fab fa-twitter font-icon"></i>
+                                    <i class="fab fa-facebook-f mx-4 font-icon"></i>
+                                    <i class="fab fa-instagram font-icon"></i>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+@endsection
+
+
+
+
+
+
+@section('js')
+    <script>
+        let btn = document.querySelector('.my-botton')
+        let form = document.querySelector('#login')
+        btn.addEventListener('click',function () {
+            form.submit()
+        })
+    </script>
 @endsection
