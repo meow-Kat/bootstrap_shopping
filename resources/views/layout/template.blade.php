@@ -47,21 +47,16 @@
                     <div class="dropdown-menu dropdown-menu-lg-right position-absolute login-option">
                         {{-- 控制登入登出顯示 --}}
                         @guest
-                            <a href="{{ asset('/login') }}"><button class="dropdown-item"
-                                    type="button">Login</button></a>
-
+                            <a href="{{ asset('/login') }}"><button class="dropdown-item" type="button">Login</button></a>
                         @else
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
-
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
-
                         @endguest
-
                     </div>
                 </div>
             </div>
