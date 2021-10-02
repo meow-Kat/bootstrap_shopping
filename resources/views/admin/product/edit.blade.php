@@ -50,7 +50,7 @@
 
                 <div class="form-group">
                     <label class="py-2" for="top" >是否置頂</label>
-                    <input type="checkbox" class="mx-2" id="top" name="top" @if ( $record->top == 1 ) checked @endif>
+                    <input type="checkbox" class="mx-2" id="top" name="top" @if ( $record->top == 1 )checked @endif  value="1" >
                 </div>
 
                 <div class="form-group">
@@ -76,13 +76,12 @@
                     @foreach ($color as $key => $item)
                         <input type="color" class="mx-2" id="product_color" name="product_color[]" value="{{ $item }}">
                         <span class="add-color-space"></span>
-                        {{-- <button type="button" class="btn btn-sm btn-secondary">增加顏色</button> --}}
                     @endforeach
                 </div>
             </div>
             <div class="col-6">
-                <label for="'product_type_id">分類</label>
-                <select class="form-control form-control-lg" id="'product_type_id" name="'product_type_id">
+                <label for="product_type_id">分類</label>
+                <select class="form-control form-control-lg" id="product_type_id" name="product_type_id">
                     @foreach ($type as $item)
                         <option @if ($record->type == $item) selected @endif
                             value="{{ $item->id }}">{{ $item->type_name }}</option>

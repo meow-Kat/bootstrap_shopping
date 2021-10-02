@@ -23,7 +23,7 @@
 
 
     <!-- Custom styles for this template -->
-    <link href="jumbotron.css" rel="stylesheet">
+    {{-- <link href="jumbotron.css" rel="stylesheet"> --}}
 </head>
 
 <body>
@@ -95,10 +95,10 @@
         integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous">
     </script>
 
-    <script src="sweetalert2/dist/sweetalert2.js"></script>
+    {{-- <script src="sweetalert2/dist/sweetalert2.js"></script> --}}
     @yield('js')
     <script>
-        Swal.fire('Any fool can use computer')
+        // Swal.fire('Any fool can use computer')
     </script>
 </body>
 

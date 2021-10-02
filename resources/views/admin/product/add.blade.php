@@ -5,22 +5,23 @@
 @section('h1_title', '新增產品')
 
 @section('css')
-<style>
-    .del-img-btn{
-        position: absolute;
-        right: 10px;
-        top: -10px;
-        width: 20px;
-        height: 20px;
-        background-color: red;
-        border-radius:50%;
-        cursor: pointer;
-        color: white;
-        text-align: center;
-        line-height: 22px;
-        font-size:16px
-    }
-</style>
+    <style>
+        .del-img-btn {
+            position: absolute;
+            right: 10px;
+            top: -10px;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+            cursor: pointer;
+            color: white;
+            text-align: center;
+            line-height: 22px;
+            font-size: 16px
+        }
+
+    </style>
 @endsection
 
 @section('content')
@@ -34,7 +35,7 @@
                     <input class="py-3" type="file" onchange="readURL(this)" targetID="preview_progressbarTW_img"
                         {{-- 接受圖片型式 --}} accept="image/*" name="product_photo">
                 </div>
-                
+
                 {{-- 讓使用者在編輯資料時刪除關聯圖片 --}}
                 <div class="form-group row">
                     <label for="photo" class="col-md-4 col-form-label text-md-right">其他圖片</label>
@@ -63,16 +64,10 @@
                 </div>
 
                 <div class="form-group color-group">
-                    <label class="pr-3" for="product_color">顏色</label>
-                    {{-- <input type="color" class="mx-2" id="product_color[]" name="product_color">
-                    <span class="add-color-space"></span>
-                    <button type="button" class="btn btn-sm btn-secondary">增加顏色</button> --}}
-                    {{-- <input class="btn btn-outline-primary btn-sm h-75 addColor" name="addBtn" type="button" value="+"> --}}
-                    <div class="row m-0 d-flex align-items-center mb-3">
-                        <input id="color" type="color" class="form-control w-25 mr-3" name="color[]" autocomplete="color"
-                            autofocus>
-                        {{-- <input class="btn btn-outline-danger btn-sm h-75 addColor" name="addBtn" type="button" value='-'
-                            onclick='$(this).parent().remove();'> --}}
+                    <label class="pr-3" for="product_color">主要顏色</label>
+                    <button type="button" class="btn btn-sm btn-secondary" id="addColor">增加顏色</button>
+                    <div class="row m-0 mb-3" id="colorBox">
+                        <input id="color" type="color" class="form-control w-25 mr-3" name="color[]">
                     </div>
                 </div>
             </div>
@@ -137,5 +132,26 @@
         // });
         // }
 
+
+        var max_fields = 3; //maximum input boxes allowed
+        var wrapper = document.querySelector('#colorBox') //Fields wrapper
+        var add_button = document.querySelector('#addColor') //Add button ID
+
+        var x = 1; //initlal text box count
+        add_button.onclick = function(e) { //on add input button click
+            e.preventDefault();
+            if (x < max_fields) { //max input box allowed
+                x++; //text box increment
+                var newColor = document.createElement('div')
+                newColor.innerHTML = `<input type="color" class="form-control  mr-3" name="color[]"/><button class="remove_field">X</button>`
+                wrapper.appendChild( newColor ); //add input box
+            }
+        };
+
+        $(wrapper).on("click", ".remove_field", function(e) { //user click on remove text
+            e.preventDefault();
+            $(this).parent('div').remove();
+            x--;
+        })
     </script>
 @endsection

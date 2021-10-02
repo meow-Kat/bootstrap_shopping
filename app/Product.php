@@ -16,10 +16,10 @@ class Product extends Model
 
     // 根據不同的 attribute 要寫在不同地方
     //  只要有資料透過 model 進行存取(新增/修改/使用)
-    public function setColorAttribute($value)
-    {
-        $this->attributes['color'] = json_encode($value);
-    }
+    // public function setColorAttribute($value)
+    // {
+    //     $this->attributes['color'] = json_encode($value);
+    // }
     // 只要有資料透過 model 進行存取（新增、修改、使用）修改器 必須放在關聯上面 有優先順序
 
     public function getSizeAttribute($value)
@@ -27,10 +27,10 @@ class Product extends Model
         return $this->attributes['size'] = json_decode($value);
     }
 
-    public function getColorAttribute($value)
-    {
-        return $this->attributes['color'] = json_decode($value);
-    }
+    // public function getColorAttribute($value)
+    // {
+    //     return $this->attributes['color'] = json_decode($value);
+    // }
 
     public function category()
     {

@@ -27,7 +27,7 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        // dd(Product::find($id));
+
         $record = Product::with('productImgs')->find($id);
         $type = ProductType::get();
         $color = json_decode($record->product_color);
@@ -39,7 +39,11 @@ class ProductController extends Controller
     {
         $record = Product::with('productImgs')->find($id);
         $requestData =  $request->all();
-        // dd($request);
+
+        $request->top == null ? $top = 0 : $top = $request->top;
+        $requestData[ 'top' ] = $top;
+        // dd($requestData);
+
 
         // 單張圖片編輯
         if ($request->hasFile('product_photo')) {
